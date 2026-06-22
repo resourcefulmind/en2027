@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { content } from "@/content";
 import { Button } from "@/components/woven/Button";
@@ -8,8 +7,9 @@ import { PaperTexture } from "@/components/woven/PaperTexture";
 import { Reveal } from "@/components/woven/Reveal";
 import { SectionHeading } from "@/components/woven/SectionHeading";
 import { ThreadIn } from "@/components/woven/ThreadIn";
+import { Toast } from "@/components/woven/Toast";
 import { buildIcs } from "@/lib/ics";
-import { cn } from "@/lib/utils";
+import { useToast } from "@/lib/useToast";
 
 /**
  * Wedding Details (Feature 07). Venue / Time / Dress Code cards, then Open in
@@ -85,10 +85,7 @@ const SWATCHES = [
 ];
 
 export function WeddingDetails() {
-  const [toast, setToast] = useState(false);
-  const timer = useRef<number>(0);
-
-  useEffect(() => () => window.clearTimeout(timer.current), []);
+  const { toast, showToast } = useToast(2400);
 
   function addToCalendar() {
     const blob = new Blob([buildIcs()], { type: "text/calendar" });
@@ -100,9 +97,7 @@ export function WeddingDetails() {
     a.click();
     a.remove();
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-    setToast(true);
-    window.clearTimeout(timer.current);
-    timer.current = window.setTimeout(() => setToast(false), 2400);
+    showToast("Calendar invite downloaded");
   }
 
   return (
@@ -192,21 +187,7 @@ export function WeddingDetails() {
         </div>
       </section>
 
-      {/* download confirmation */}
-      <div
-        role="status"
-        aria-live="polite"
-        className={cn(
-          "fixed bottom-7 left-1/2 z-50 inline-flex -translate-x-1/2 items-center gap-2.5 rounded-pill bg-coffee px-[22px] py-[13px] text-[13.5px] font-semibold text-ivory shadow-[0_10px_30px_rgba(62,44,34,0.28)]",
-          "transition-[opacity,transform] duration-300 ease-out",
-          toast ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3.5 opacity-0",
-        )}
-      >
-        <span className="inline-flex size-[19px] items-center justify-center rounded-full bg-coral">
-          <CheckIcon />
-        </span>
-        {toast ? "Calendar invite downloaded" : ""}
-      </div>
+      <Toast message={toast} />
     </>
   );
 }
@@ -251,13 +232,6 @@ function CalendarIcon() {
     <svg viewBox="0 0 24 24" {...stroke}>
       <rect x="3" y="4.5" width="18" height="17" rx="2" />
       <path d="M3 9h18M8 2.5v4M16 2.5v4M12 13v5M9.5 15.5h5" />
-    </svg>
-  );
-}
-function CheckIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" className="size-3">
-      <path d="M20 6 9 17l-5-5" />
     </svg>
   );
 }
