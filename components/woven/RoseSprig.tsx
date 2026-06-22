@@ -160,7 +160,13 @@ export function RoseSprig({ variant = "sprig", color = "gold", className }: Prop
       className={cn("inline-block", color === "coral" ? "text-coral opacity-90" : "text-gold", className)}
     >
       {variant === "sprig" ? (
-        <svg viewBox="0 0 68 130" width="100%" aria-hidden="true" ref={svgRef}>
+        <svg
+          viewBox="0 0 68 130"
+          aria-hidden="true"
+          ref={svgRef}
+          className="block w-full"
+          style={{ aspectRatio: "68 / 130" }}
+        >
           <path d={SPRIG_STEM} style={STROKE} />
           <path d={SPRIG_L1} style={STROKE} />
           <path d={SPRIG_L2} style={STROKE} />
@@ -168,7 +174,13 @@ export function RoseSprig({ variant = "sprig", color = "gold", className }: Prop
           <path d={SPRIG.ring} style={STROKE} />
         </svg>
       ) : (
-        <svg viewBox="0 0 64 64" width="100%" aria-hidden="true" ref={svgRef}>
+        <svg
+          viewBox="0 0 64 64"
+          aria-hidden="true"
+          ref={svgRef}
+          className="block w-full"
+          style={{ aspectRatio: "1 / 1" }}
+        >
           <polyline points={polyPoints(BLOOM.spiral)} style={STROKE} />
           <path d={BLOOM.ring} style={STROKE} />
         </svg>
