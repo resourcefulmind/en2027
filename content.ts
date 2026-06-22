@@ -13,7 +13,13 @@
 export const content = {
   couple: {
     bride: "Ebere",
+    // Family attribution shown under each hero name (casing normalized for the
+    // display — confirm wording/spelling before launch).
+    brideFamily:
+      "From the family of Mr John Chinagrom Ibeh of Umuagba Omukwu, Onicha Ezinihitte L.G.A., Mbaise",
     groom: "Nnamdi",
+    groomFamily:
+      "From the family of Late Chief Sylvanus Obioha Ukanwa of Umuokoro Lude Ahiara, Ahiazu Mbaise L.G.A.",
     namesDisplay: "Ebere & Nnamdi", // ampersand renders Fraunces italic coral
     monogram: { left: "E", right: "N" }, // EN gold-foil crest (replaces TA)
     // Groom's chieftaincy title — honoured in the FOOTER formal close, not the hero.
