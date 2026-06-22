@@ -1,8 +1,8 @@
 "use client";
 
 import { content } from "@/content";
-import { Monogram } from "@/components/woven/Monogram";
 import { PaperTexture } from "@/components/woven/PaperTexture";
+import { PhotoFrame } from "@/components/woven/PhotoFrame";
 import { Reveal } from "@/components/woven/Reveal";
 import { RoseSprig } from "@/components/woven/RoseSprig";
 import { SectionHeading } from "@/components/woven/SectionHeading";
@@ -24,11 +24,6 @@ const WASH =
   "radial-gradient(120% 65% at 50% 2%, rgba(248,222,207,.42), transparent 60%)," +
   "radial-gradient(80% 50% at 70% 96%, rgba(194,155,69,.10), transparent 60%)";
 
-// Faint cross-hatch on the photo cardstock.
-const CARD_GRAIN =
-  "repeating-linear-gradient(45deg, rgba(62,44,34,.013) 0 1px, transparent 1px 6px)," +
-  "repeating-linear-gradient(-45deg, rgba(62,44,34,.010) 0 1px, transparent 1px 6px)";
-
 // Deterministic petal layout (no Math.random → identical on server and client).
 const PETALS = [
   { left: 8, top: 12, scale: 0.8, dur: 22, delay: -3 },
@@ -43,7 +38,8 @@ const PETALS = [
 const PETAL_BG =
   "radial-gradient(circle at 35% 30%, rgba(242,192,172,.5), rgba(224,120,86,.16))";
 
-function PhotoFrame({ className }: { className?: string }) {
+// The Beat's framed photo: shared PhotoFrame + two rose-sprig corners.
+function BeatPhoto({ className }: { className?: string }) {
   return (
     <div className={cn("relative", className)}>
       <RoseSprig
@@ -54,19 +50,11 @@ function PhotoFrame({ className }: { className?: string }) {
         variant="sprig"
         className="absolute -bottom-3.5 -right-3.5 z-[3] w-[clamp(64px,13vw,92px)] rotate-180"
       />
-      <div
-        className="relative flex aspect-[4/5] flex-col items-center justify-center gap-3.5 overflow-hidden rounded-[4px] border border-gold bg-ivory shadow-[0_2px_5px_rgba(62,44,34,0.05),0_26px_56px_rgba(62,44,34,0.12)]"
-        style={{ backgroundImage: CARD_GRAIN }}
-      >
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-[7px] rounded-[3px] border border-[rgba(194,155,69,0.4)]"
-        />
-        <Monogram size={58} className="opacity-55" />
-        <span className="text-[clamp(9.5px,2vw,11px)] font-semibold uppercase tracking-[0.24em] text-coffee-soft">
-          Couple&apos;s Photograph
-        </span>
-      </div>
+      <PhotoFrame
+        monoSize={58}
+        label="Couple's Photograph"
+        className="aspect-[4/5] gap-3.5 shadow-[0_2px_5px_rgba(62,44,34,0.05),0_26px_56px_rgba(62,44,34,0.12)]"
+      />
     </div>
   );
 }
@@ -96,7 +84,7 @@ function Beat({ beat, flip }: { beat: BeatData; flip?: boolean }) {
           </p>
         ))}
       </div>
-      <PhotoFrame className={cn(flip && "min-[760px]:order-1")} />
+      <BeatPhoto className={cn(flip && "min-[760px]:order-1")} />
     </Reveal>
   );
 }

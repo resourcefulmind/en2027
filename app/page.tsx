@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { OurStory } from "@/components/sections/OurStory";
 import { WeddingDetails } from "@/components/sections/WeddingDetails";
 import { Schedule } from "@/components/sections/Schedule";
+import { Gallery } from "@/components/sections/Gallery";
 
 /**
  * The page. Sections compose here in order (build-plan Phase 2). The fixed
@@ -19,6 +20,7 @@ export default function Home() {
         <OurStory />
         <WeddingDetails />
         <Schedule />
+        <Gallery />
       </main>
     </>
   );

@@ -119,7 +119,19 @@ export const content = {
     heading: "A Few of Our Favourite Moments",
     subline: "Glimpses of the road that brought us here — and of the day itself, once it is ours to keep.",
     emptyNote: "Photographs coming soon — gathered after our shoot.",
-    // [PLACEHOLDER — real engagement + gallery photos pending the shoot; see FACTS §9.]
+    // PLACEHOLDER tiles — captions + aspect ratios are scaffolding; the photo shoot
+    // (feature 17) adds `src`/`alt` per tile. First entry is the wide feature tile;
+    // `aspect` drives the masonry layout. See FACTS §9.
+    tiles: [
+      { caption: "A wide, unhurried moment", aspect: "21 / 9", feature: true },
+      { caption: "Golden hour", aspect: "4 / 5" },
+      { caption: "A quiet portrait", aspect: "1 / 1" },
+      { caption: "Hand in hand", aspect: "3 / 4" },
+      { caption: "Among family", aspect: "5 / 4" },
+      { caption: "The first look", aspect: "3 / 4" },
+      { caption: "Laughter", aspect: "4 / 5" },
+      { caption: "A stolen glance", aspect: "1 / 1" },
+    ],
   },
 
   gifting: {
