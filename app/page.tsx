@@ -2,6 +2,7 @@ import { Navigation } from "@/components/sections/Navigation";
 import { Hero } from "@/components/sections/Hero";
 import { OurStory } from "@/components/sections/OurStory";
 import { WeddingDetails } from "@/components/sections/WeddingDetails";
+import { Schedule } from "@/components/sections/Schedule";
 
 /**
  * The page. Sections compose here in order (build-plan Phase 2). The fixed
@@ -17,6 +18,7 @@ export default function Home() {
         <Hero />
         <OurStory />
         <WeddingDetails />
+        <Schedule />
       </main>
     </>
   );

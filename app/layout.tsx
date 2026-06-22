@@ -34,11 +34,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // suppressHydrationWarning: browser extensions (ColorZilla, Scribe, etc.)
+    // inject attributes onto <html>/<body> before React hydrates. This ignores
+    // attribute diffs on these two elements only — never their children.
     <html
       lang="en"
       className={`${fraunces.variable} ${hanken.variable} antialiased`}
+      suppressHydrationWarning
     >
-      <body>
+      <body suppressHydrationWarning>
         {/* Shared gold-foil gradient — defined once so any Monogram/crest SVG
             on the page can fill text with url(#goldFoil). Hex lives here by
             design (see ui-tokens.md); components stay token-only. */}
