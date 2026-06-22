@@ -1,13 +1,12 @@
 "use client";
 
-import type { CSSProperties, ReactNode } from "react";
 import { content } from "@/content";
 import { Monogram } from "@/components/woven/Monogram";
 import { PaperTexture } from "@/components/woven/PaperTexture";
+import { Reveal } from "@/components/woven/Reveal";
 import { RoseSprig } from "@/components/woven/RoseSprig";
 import { SectionHeading } from "@/components/woven/SectionHeading";
 import { ThreadIn } from "@/components/woven/ThreadIn";
-import { useReveal } from "@/lib/useReveal";
 import { cn } from "@/lib/utils";
 
 /**
@@ -43,35 +42,6 @@ const PETALS = [
 
 const PETAL_BG =
   "radial-gradient(circle at 35% 30%, rgba(242,192,172,.5), rgba(224,120,86,.16))";
-
-// Fade-and-rise wrapper, scroll-triggered. useReveal flips revealed immediately
-// under reduced-motion; the motion-reduce variants also pin the resting state
-// visible so nothing is ever stranded hidden.
-function Reveal({
-  children,
-  className,
-  style,
-}: {
-  children: ReactNode;
-  className?: string;
-  style?: CSSProperties;
-}) {
-  const { ref, revealed } = useReveal<HTMLDivElement>();
-  return (
-    <div
-      ref={ref}
-      style={style}
-      className={cn(
-        "transition-[opacity,transform] duration-[800ms] ease-out",
-        "motion-reduce:!translate-y-0 motion-reduce:!opacity-100 motion-reduce:transition-none",
-        revealed ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0",
-        className,
-      )}
-    >
-      {children}
-    </div>
-  );
-}
 
 function PhotoFrame({ className }: { className?: string }) {
   return (
