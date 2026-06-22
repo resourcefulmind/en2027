@@ -4,10 +4,13 @@ import { content } from "@/content";
 import "./globals.css";
 
 // Display — names + section titles. Italic carries the brand ampersand "&".
+// Loaded as the variable font with the optical-size axis (opsz 9..144, matching
+// the design's Google Fonts spec) so large display glyphs — notably the italic
+// ampersand — take their high-opsz forms via font-optical-sizing: auto.
 const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
+  axes: ["opsz"],
   variable: "--font-fraunces",
   display: "swap",
 });
