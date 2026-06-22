@@ -58,14 +58,30 @@ export const content = {
 
   ourStory: {
     eyebrow: "OUR STORY",
-    heading: "Where our story begins",
-    // PLACEHOLDERS — tasteful scaffolding in the right voice; replace with the couple's real words.
-    howWeMet:
-      "[PLACEHOLDER — Ebere & Nnamdi's real 'how we met' story. Replace with their actual words.]",
+    heading: "How the two became one",
+    lede: "Every love has its beginning — a first glance, a first word, a moment that quietly changed everything. Here is a little of ours.",
+    // Beat bodies are PLACEHOLDERS in the right voice — replace each with the
+    // couple's actual words. Labels + headings can stay as-is.
+    beats: {
+      howWeMet: {
+        label: "How We Met",
+        heading: "Where we began",
+        body: [
+          "[PLACEHOLDER — where Ebere & Nnamdi met: the place, who said hello first, the detail they still tease each other about.]",
+          "[PLACEHOLDER — the part that made it more than chance: the call the next morning, the way everything felt a little warmer after.]",
+        ],
+      },
+      proposal: {
+        label: "The Proposal",
+        heading: "The question",
+        body: [
+          "[PLACEHOLDER — the proposal: the place, the hour, who knew and who didn't, the quiet just before the question.]",
+          "[PLACEHOLDER — and then the yes, and the people who appeared to celebrate (or the quiet they kept for the two of them).]",
+        ],
+      },
+    },
     pullQuote:
       "And somewhere between hello and forever, we stopped counting the days apart.",
-    proposal:
-      "[PLACEHOLDER — the real proposal story. Replace with their actual words.]",
   },
 
   details: {

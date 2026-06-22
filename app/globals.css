@@ -169,3 +169,20 @@ body {
   .hero-anim-mono { animation: hero-mono 1s var(--ease-out) both; }
   .hero-grow { transform-origin: top; animation: hero-grow 0.8s var(--ease-out) both; }
 }
+
+/* Our Story — slow-drifting petals (decorative). Petals rest at opacity 0, so
+   under reduced-motion (no animation bound) they simply never appear.
+   Per-petal duration/delay are set inline in OurStory.tsx. */
+@keyframes petal-drift {
+  0% { opacity: 0; transform: translateY(-40px) rotate(0deg); }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.45; }
+  100% { opacity: 0; transform: translateY(620px) rotate(220deg); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .petal-drift {
+    animation-name: petal-drift;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
