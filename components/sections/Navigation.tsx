@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { content } from "@/content";
 import { Monogram } from "@/components/woven/Monogram";
+import { scrollToSection } from "@/lib/scroll";
 import { cn } from "@/lib/utils";
 
 /**
@@ -30,20 +31,6 @@ export function Navigation() {
   const [sheetOpen, setSheetOpen] = useState(false);
   const lastFocus = useRef<HTMLElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
-
-  // Smooth scroll to a section, offsetting for the live nav height. Honours
-  // reduced-motion (read at call time so it tracks OS changes).
-  const scrollToId = useCallback((id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const navH = navRef.current?.offsetHeight ?? 0;
-    const y = el.getBoundingClientRect().top + window.scrollY - (navH - 2);
-    window.scrollTo({
-      top: id === HERO_ID ? 0 : y,
-      behavior: reduce ? "auto" : "smooth",
-    });
-  }, []);
 
   // Single rAF-throttled handler: frost past the hero, and active = the last
   // tracked section whose top has crossed 35% of the viewport (cleared in hero).
@@ -110,7 +97,7 @@ export function Navigation() {
 
   // A nav/sheet link: scroll to its section, then close the sheet.
   const go = (id: string) => () => {
-    scrollToId(id);
+    scrollToSection(id);
     closeSheet();
   };
 
@@ -118,6 +105,7 @@ export function Navigation() {
     <>
       <nav
         ref={navRef}
+        data-site-nav
         aria-label="Primary"
         className={cn(
           "fixed inset-x-0 top-0 z-[60] flex items-center justify-between",

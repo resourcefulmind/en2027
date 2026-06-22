@@ -148,3 +148,24 @@ body {
     scroll-behavior: auto;
   }
 }
+
+/* Hero entrance — staggered on load. Resting state is fully visible, so under
+   reduced-motion (no animation) everything simply shows. Delays are set inline
+   per element in Hero.tsx. */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-mono {
+  from { opacity: 0; transform: translateY(14px) scale(0.9); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-grow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-anim { animation: hero-rise 0.9s var(--ease-out) both; }
+  .hero-anim-mono { animation: hero-mono 1s var(--ease-out) both; }
+  .hero-grow { transform-origin: top; animation: hero-grow 0.8s var(--ease-out) both; }
+}
