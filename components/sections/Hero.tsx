@@ -126,7 +126,7 @@ export function Hero() {
           <HeroCrest />
 
           <span
-            className="hero-anim text-[clamp(10px,2.4vw,12.5px)] font-semibold uppercase tracking-[0.28em] text-coffee-soft"
+            className="hero-anim mt-[clamp(30px,6vw,52px)] text-[clamp(10px,2.4vw,12.5px)] font-semibold uppercase tracking-[0.28em] text-coffee-soft"
             style={{ animationDelay: "0.28s" }}
           >
             {content.hero.eyebrow}
@@ -172,8 +172,15 @@ export function Hero() {
           />
 
           <span
-            className="hero-anim text-[clamp(10.5px,2.6vw,12.5px)] font-semibold uppercase leading-[1.4] tracking-[0.2em] text-coffee"
+            className="hero-anim max-w-[34ch] font-display text-[clamp(13.5px,3vw,17px)] italic leading-[1.5] text-coffee-soft"
             style={{ animationDelay: "0.84s" }}
+          >
+            {content.hero.invite}
+          </span>
+
+          <span
+            className="hero-anim text-[clamp(10.5px,2.6vw,12.5px)] font-semibold uppercase leading-[1.4] tracking-[0.2em] text-coffee"
+            style={{ animationDelay: "0.92s" }}
           >
             {content.event.dateLine}
             <span className="mt-[7px] block font-medium tracking-[0.16em] text-coffee-soft">
@@ -181,13 +188,13 @@ export function Hero() {
             </span>
           </span>
 
-          <div className="hero-anim" style={{ animationDelay: "0.92s" }}>
+          <div className="hero-anim" style={{ animationDelay: "1s" }}>
             <Countdown />
           </div>
 
           <div
             className="hero-anim flex flex-wrap items-center justify-center gap-[clamp(14px,4vw,22px)]"
-            style={{ animationDelay: "1s" }}
+            style={{ animationDelay: "1.08s" }}
           >
             <Button variant="primary" onClick={() => scrollToSection("rsvp")}>
               {content.hero.ctaPrimary}
@@ -202,7 +209,7 @@ export function Hero() {
         <div className="relative z-[4] flex flex-col items-center" aria-hidden="true">
           <span
             className="hero-grow relative w-[1.5px] bg-coral"
-            style={{ height: "clamp(56px,11vh,92px)", animationDelay: "1.08s" }}
+            style={{ height: "clamp(56px,11vh,92px)", animationDelay: "1.16s" }}
           >
             <span className="absolute left-1/2 top-[40%] size-[5px] -translate-x-1/2 rounded-full bg-gold" />
           </span>
@@ -214,7 +221,7 @@ export function Hero() {
             style={{
               height: "clamp(20px,5vh,40px)",
               background: "linear-gradient(var(--color-coral), transparent)",
-              animationDelay: "1.18s",
+              animationDelay: "1.26s",
             }}
           />
         </div>

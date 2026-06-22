@@ -47,6 +47,8 @@ export const content = {
 
   hero: {
     eyebrow: "TOGETHER WITH THEIR FAMILIES",
+    // Invitation verb shown under the names (above the date).
+    invite: "joyfully invite you to celebrate their traditional marriage",
     familyLine:
       "The family of Mr John Chinagrom Ibeh of Onicha Ezinihitte and the family of Late Chief Sylvanus Obioha Ukanwa of Lude Ahiara joyfully invite you to the traditional marriage of their children.",
     invitation: "We would be honoured to have you with us as two families become one.",
