@@ -227,7 +227,7 @@ export function Navigation() {
             type="button"
             onClick={closeSheet}
             aria-label="Close menu"
-            className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-coffee-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus-ring)]"
+            className="inline-flex size-[40px] cursor-pointer items-center justify-center rounded-lg text-coffee-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus-ring)]"
           >
             <svg
               viewBox="0 0 24 24"
