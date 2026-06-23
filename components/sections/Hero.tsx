@@ -107,8 +107,9 @@ export function Hero() {
         }}
       />
 
-      {/* stage */}
-      <div className="relative z-[4] flex w-full flex-1 flex-col items-center justify-center px-5 pt-2">
+      {/* stage — top padding clears the fixed nav with breathing room; the
+          section grows past 100svh on short screens rather than crowding it */}
+      <div className="relative z-[4] flex w-full flex-1 flex-col items-center justify-center px-5 pt-2 max-[720px]:pb-[clamp(32px,6vh,64px)] max-[720px]:pt-[clamp(82px,11.8vh,110px)]">
         {/* invitation card */}
         <div
           className="relative flex w-full max-w-[560px] flex-col items-center gap-[clamp(18px,3.2vw,26px)] rounded-[3px] border border-gold bg-ivory px-[clamp(26px,6vw,64px)] pb-[clamp(38px,7vw,60px)] pt-[clamp(34px,7vw,60px)] text-center shadow-[0_2px_5px_rgba(62,44,34,0.05),0_30px_70px_rgba(62,44,34,0.13)]"
