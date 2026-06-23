@@ -6,6 +6,7 @@ import { Schedule } from "@/components/sections/Schedule";
 import { Gallery } from "@/components/sections/Gallery";
 import { Gifting } from "@/components/sections/Gifting";
 import { Faq } from "@/components/sections/Faq";
+import { Footer } from "@/components/sections/Footer";
 
 /**
  * The page. Sections compose here in order (build-plan Phase 2). The fixed
@@ -26,6 +27,7 @@ export default function Home() {
         <Gifting />
         <Faq />
       </main>
+      <Footer />
     </>
   );
 }
