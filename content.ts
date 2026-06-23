@@ -41,7 +41,7 @@ export const content = {
   },
 
   nav: {
-    links: ["Our Story", "Schedule", "Details", "Gallery"], // Gifts & FAQ intentionally excluded
+    links: ["Our Story", "Details", "Schedule", "Gallery"], // page order; Gifts & FAQ intentionally excluded
     cta: "RSVP",
   },
 

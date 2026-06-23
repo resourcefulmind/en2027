@@ -16,7 +16,9 @@ import { cn } from "@/lib/utils";
  */
 
 // Nav labels come from content.ts; the target id for each is owned here.
-const SECTION_IDS = ["story", "schedule", "details", "gallery"] as const;
+// Order must match the page's DOM order: active-tracking picks the last section
+// above the line, and the menu reads top-to-bottom with the page.
+const SECTION_IDS = ["story", "details", "schedule", "gallery"] as const;
 const LINKS = content.nav.links.map((label, i) => ({
   label,
   id: SECTION_IDS[i],
