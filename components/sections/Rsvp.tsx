@@ -9,6 +9,7 @@ import { Reveal } from "@/components/woven/Reveal";
 import { SectionHeading } from "@/components/woven/SectionHeading";
 import { ThreadIn } from "@/components/woven/ThreadIn";
 import { rsvpSchema } from "@/lib/validation";
+import { scrollToSection } from "@/lib/scroll";
 import { useDialog } from "@/lib/useDialog";
 import { cn } from "@/lib/utils";
 
@@ -103,6 +104,11 @@ export function Rsvp() {
 
   const closeRef = useRef<HTMLButtonElement>(null);
   const closeModal = () => setDone(null);
+  // Gentle nudge to the Gifting section (accept path only): close, then scroll up.
+  const giftUs = () => {
+    setDone(null);
+    scrollToSection("gifting");
+  };
   useDialog(done !== null, closeModal, closeRef);
 
   function selectAttend(v: "yes" | "no") {
@@ -257,6 +263,14 @@ export function Rsvp() {
             <button type="button" onClick={closeModal} className="cursor-pointer rounded-pill border border-coffee px-[30px] py-[13px] font-body text-[12px] font-bold uppercase tracking-[0.16em] text-coffee transition-colors duration-200 hover:bg-coffee hover:text-ivory">
               Close
             </button>
+            {done.yes ? (
+              <p className="mt-[18px] text-[13px] leading-[1.5] text-coffee-soft">
+                {rsvp.giftPrompt}{" "}
+                <button type="button" onClick={giftUs} className="cursor-pointer font-semibold text-coral underline-offset-2 hover:text-coral-deep hover:underline">
+                  {rsvp.giftCta} →
+                </button>
+              </p>
+            ) : null}
           </div>
         </div>
       ) : null}

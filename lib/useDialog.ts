@@ -24,7 +24,9 @@ export function useDialog(
     if (!open) return;
     const lastFocus = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
-    initialFocus?.current?.focus();
+    // preventScroll so focus management never yanks the page — e.g. a close
+    // action that also scrolls elsewhere isn't undone by restoring focus.
+    initialFocus?.current?.focus({ preventScroll: true });
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onCloseRef.current();
     };
@@ -32,7 +34,7 @@ export function useDialog(
     return () => {
       document.body.style.overflow = "";
       document.removeEventListener("keydown", onKey);
-      lastFocus?.focus();
+      lastFocus?.focus({ preventScroll: true });
     };
   }, [open, initialFocus]);
 }

@@ -215,6 +215,9 @@ export const content = {
     successNoMsg: "Thank you for letting us know. You'll be in our hearts on the day.",
     acceptSub: "We'll be there to celebrate",
     declineSub: "We can't make it this time",
+    // Gentle gift nudge in the success modal — accept path only.
+    giftPrompt: "Thinking of a gift for our new home?",
+    giftCta: "Gift Us",
   },
 } as const;
 
