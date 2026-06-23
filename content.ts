@@ -210,7 +210,11 @@ export const content = {
     declineNote: "We'll miss you — but thank you for letting us know.",
     submitCta: "Send our RSVP",
     successYes: "Thank you, {name} — we can't wait to celebrate with you!",
+    successYesMsg: "Your RSVP is received. Watch this space for the final details — and come ready to dance.",
     successNo: "We'll miss you, {name} — thank you for letting us know.",
+    successNoMsg: "Thank you for letting us know. You'll be in our hearts on the day.",
+    acceptSub: "We'll be there to celebrate",
+    declineSub: "We can't make it this time",
   },
 } as const;
 

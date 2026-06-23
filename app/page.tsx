@@ -6,6 +6,7 @@ import { Schedule } from "@/components/sections/Schedule";
 import { Gallery } from "@/components/sections/Gallery";
 import { Gifting } from "@/components/sections/Gifting";
 import { Faq } from "@/components/sections/Faq";
+import { Rsvp } from "@/components/sections/Rsvp";
 import { Footer } from "@/components/sections/Footer";
 
 /**
@@ -26,6 +27,7 @@ export default function Home() {
         <Gallery />
         <Gifting />
         <Faq />
+        <Rsvp />
       </main>
       <Footer />
     </>
