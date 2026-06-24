@@ -17,7 +17,7 @@ import { cn, formatWishDate } from "@/lib/utils";
  * route) and a masonry wall of note-cards server-rendered from the same store.
  * The wall hydrates from `initialWishes`; a submission is optimistically
  * prepended (rolled back on failure) and confirmed with a toast. Wishes render
- * as plain text (React-escaped) — never HTML.
+ * as plain text (React-escaped), never HTML.
  */
 
 export type WishCard = { id: string; name: string; message: string; date: string };

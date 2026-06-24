@@ -3,7 +3,7 @@ import { google } from "googleapis";
 import type { RsvpInput } from "@/lib/validation";
 
 /**
- * Google Sheets seam (feature 13) — the ONLY module that talks to the RSVP
+ * Google Sheets seam (feature 13): the ONLY module that talks to the RSVP
  * Sheet. Service-account auth via server-only env vars. Writes are RAW (never
  * USER_ENTERED) and leading formula characters are neutralised, so a guest's
  * name or message can never become a live spreadsheet formula. Header/column

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Bottom-centered confirmation pill, driven by `useToast` (message | null).
- * Presentational only — visibility and text come straight from `message`.
+ * Presentational only; visibility and text come straight from `message`.
  * Announced politely to assistive tech.
  */
 export function Toast({ message }: { message: string | null }) {

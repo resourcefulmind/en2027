@@ -3,10 +3,10 @@ import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import { content } from "@/content";
 import "./globals.css";
 
-// Display — names + section titles. Italic carries the brand ampersand "&".
+// Display: names + section titles. Italic carries the brand ampersand "&".
 // Loaded as the variable font with the optical-size axis (opsz 9..144, matching
-// the design's Google Fonts spec) so large display glyphs — notably the italic
-// ampersand — take their high-opsz forms via font-optical-sizing: auto.
+// the design's Google Fonts spec) so large display glyphs, notably the italic
+// ampersand, take their high-opsz forms via font-optical-sizing: auto.
 const fraunces = Fraunces({
   subsets: ["latin"],
   style: ["normal", "italic"],
@@ -25,7 +25,7 @@ const hanken = Hanken_Grotesk({
 
 export const metadata: Metadata = {
   title: `${content.couple.namesDisplay} · The Invitation`,
-  description: `${content.event.framing} of ${content.couple.namesDisplay} — ${content.event.dateLine}, ${content.event.venueArea}.`,
+  description: `${content.event.framing} of ${content.couple.namesDisplay}, ${content.event.dateLine}, ${content.event.venueArea}.`,
 };
 
 export default function RootLayout({
@@ -36,14 +36,14 @@ export default function RootLayout({
   return (
     // suppressHydrationWarning: browser extensions (ColorZilla, Scribe, etc.)
     // inject attributes onto <html>/<body> before React hydrates. This ignores
-    // attribute diffs on these two elements only — never their children.
+    // attribute diffs on these two elements only, never their children.
     <html
       lang="en"
       className={`${fraunces.variable} ${hanken.variable} antialiased`}
       suppressHydrationWarning
     >
       <body suppressHydrationWarning>
-        {/* Shared gold-foil gradient — defined once so any Monogram/crest SVG
+        {/* Shared gold-foil gradient, defined once so any Monogram/crest SVG
             on the page can fill text with url(#goldFoil). Hex lives here by
             design (see ui-tokens.md); components stay token-only. */}
         <svg

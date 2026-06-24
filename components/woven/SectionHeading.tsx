@@ -8,7 +8,7 @@ type Props = {
   title: React.ReactNode;
   /** Optional muted lede beneath the title. */
   lede?: string;
-  /** Heading level — defaults to h2 (the section title). */
+  /** Heading level, defaults to h2 (the section title). */
   as?: "h1" | "h2" | "h3";
   className?: string;
 };

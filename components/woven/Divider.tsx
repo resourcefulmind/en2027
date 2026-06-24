@@ -5,7 +5,7 @@ type Props = {
 };
 
 /**
- * Fine gold hairline with a centre diamond — the quiet section separator.
+ * Fine gold hairline with a centre diamond: the quiet section separator.
  * Gold appears only as metal here (hairline + diamond), never a fill behind text.
  */
 export function Divider({ className }: Props) {

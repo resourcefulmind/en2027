@@ -17,7 +17,7 @@ export function scrollToSection(id: string): void {
   }
 
   const el = document.getElementById(id);
-  if (!el) return; // target not built yet — do nothing rather than jump wrong
+  if (!el) return; // target not built yet, do nothing rather than jump wrong
 
   const navH = document.querySelector<HTMLElement>("[data-site-nav]")?.offsetHeight ?? 0;
   const top = el.getBoundingClientRect().top + window.scrollY - (navH - 2);

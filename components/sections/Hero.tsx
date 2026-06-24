@@ -8,17 +8,17 @@ import { Countdown } from "@/components/sections/Countdown";
 import { scrollToSection } from "@/lib/scroll";
 
 /**
- * Hero (Feature 04) — the invitation. A full-viewport ivory-deep stage with a
+ * Hero (Feature 04): the invitation. A full-viewport ivory-deep stage with a
  * golden-hour wash and paper grain, holding the bordered invitation card: EN
  * crest (monogram over a hero-local guilloché medallion + woven backing),
  * eyebrow, names, gold rule, dateline, live Countdown, and the two CTAs. The
  * coral thread descends below the card to begin the site-wide thread.
  *
- * Renders its own <section id="hero"> — the anchor the fixed nav frosts/tracks
+ * Renders its own <section id="hero">, the anchor the fixed nav frosts/tracks
  * against. Entrance is staggered on-load CSS (globals.css), reduced-motion safe.
  */
 
-// Guilloché medallion geometry — concentric circles + fine radiating lines,
+// Guilloché medallion geometry: concentric circles + fine radiating lines,
 // computed once (deterministic). Watermark behind the monogram.
 const SPOKES = Array.from({ length: 48 }, (_, i) => {
   const rad = (i * 7.5 * Math.PI) / 180;
@@ -95,7 +95,7 @@ export function Hero() {
       id="hero"
       className="relative flex min-h-[100svh] flex-col items-center overflow-hidden bg-ivory-deep"
     >
-      {/* paper grain (weave + noise) — reused primitive */}
+      {/* paper grain (weave + noise), reused primitive */}
       <PaperTexture grain className="z-0" />
       {/* golden-hour wash from above */}
       <span
@@ -107,7 +107,7 @@ export function Hero() {
         }}
       />
 
-      {/* stage — top padding clears the fixed nav with breathing room; the
+      {/* stage: top padding clears the fixed nav with breathing room; the
           section grows past 100svh on short screens rather than crowding it */}
       <div className="relative z-[4] flex w-full flex-1 flex-col items-center justify-center px-5 pt-2 max-[720px]:pb-[clamp(32px,6vh,64px)] max-[720px]:pt-[clamp(82px,11.8vh,110px)]">
         {/* invitation card */}
