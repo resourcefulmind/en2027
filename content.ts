@@ -150,6 +150,7 @@ export const content = {
     intro:
       "A blessing, a prayer, or a memory — share a few warm words for Ebere & Nnamdi as they begin their life together.",
     submitCta: "Share your wish",
+    wallHeading: "Their Well-Wishes",
     toast: "Thank you — your wish has been shared.",
     emptyState: "Be the first to leave a wish for Ebere & Nnamdi.",
     seeded: [

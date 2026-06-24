@@ -186,3 +186,30 @@ body {
     animation-iteration-count: infinite;
   }
 }
+
+/* Well-Wishes note cards — gentle alternating tilt (the masonry columns + the
+   nth-child rotations are awkward in Tailwind, so they live here). Tilt resets
+   on hover and on mobile; transitions are dropped under reduced-motion. */
+.wish-note {
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+.wish-note:nth-child(3n + 1) { transform: rotate(-1.4deg); }
+.wish-note:nth-child(3n + 2) { transform: rotate(0.9deg); }
+.wish-note:nth-child(3n + 3) { transform: rotate(-0.5deg); }
+.wish-note:hover { transform: rotate(0deg) translateY(-3px); z-index: 3; }
+@media (max-width: 560px) {
+  .wish-note { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wish-note { transition: none; }
+}
+
+/* A freshly posted note pops in (reduced-motion: just appears). The `to` leaves
+   transform unset so it settles onto the card's tilt rather than flat. */
+@keyframes wish-pop {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .wish-fresh { animation: wish-pop 0.55s var(--ease-out) both; }
+}
