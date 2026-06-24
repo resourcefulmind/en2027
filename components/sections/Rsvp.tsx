@@ -14,7 +14,7 @@ import { useDialog } from "@/lib/useDialog";
 import { cn } from "@/lib/utils";
 
 /**
- * RSVP (Feature 14) — the closing call-to-action and the only section that
+ * RSVP (Feature 14): the closing call-to-action and the only section that
  * writes data. The form validates with the shared rsvpSchema, POSTs to
  * /api/rsvp (→ Google Sheet), and opens a personalised success modal. Failures
  * show an inline error and preserve every field. Section id="rsvp" resolves the
@@ -36,7 +36,7 @@ function Field({ label, required, optional, children }: { label: string; require
     <label className="flex flex-col gap-[9px]">
       <span className={LABEL}>
         {label} {required ? <span className="text-coral">*</span> : null}
-        {optional ? <span className="font-display text-[13px] italic tracking-[0.08em] text-coffee-soft opacity-60 normal-case"> — optional</span> : null}
+        {optional ? <span className="font-display text-[13px] italic tracking-[0.08em] text-coffee-soft opacity-60 normal-case">(optional)</span> : null}
       </span>
       {children}
     </label>
@@ -58,7 +58,7 @@ function Stepper({ label, value, set, min }: { label: string; value: number; set
 }
 
 function Choice({ selected, tone, title, sub, onSelect }: { selected: boolean; tone: "yes" | "no"; title: string; sub: string; onSelect: () => void }) {
-  // Selected fill/border are instant (no transition) — intentional for clarity.
+  // Selected fill/border are instant (no transition), intentional for clarity.
   const sel =
     tone === "yes"
       ? "border-coral bg-peach-soft shadow-[0_0_0_1px_#E07856,0_10px_24px_rgba(224,120,86,0.14)]"

@@ -11,8 +11,8 @@ import { ThreadIn } from "@/components/woven/ThreadIn";
 import { cn } from "@/lib/utils";
 
 /**
- * Gallery (Feature 09). An editorial layout of placeholder frames — one wide
- * feature tile + a CSS-columns masonry — each a button opening a lightbox
+ * Gallery (Feature 09). An editorial layout of placeholder frames: one wide
+ * feature tile + a CSS-columns masonry, each a button opening a lightbox
  * (prev/next/close, keyboard, scrim, focus handling, scroll lock). Tiles come
  * from content.gallery.tiles; real photos drop into the shared PhotoFrame at
  * feature 17. A "Photographs coming soon" note covers the empty state.

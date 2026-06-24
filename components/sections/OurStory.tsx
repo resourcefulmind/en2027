@@ -10,8 +10,8 @@ import { ThreadIn } from "@/components/woven/ThreadIn";
 import { cn } from "@/lib/utils";
 
 /**
- * Our Story (Feature 06). Two alternating beats — text + framed photo
- * placeholder — around a pull-quote interlude, opened by the continuing coral
+ * Our Story (Feature 06). Two alternating beats (text + framed photo
+ * placeholder) around a pull-quote interlude, opened by the continuing coral
  * thread. Paper grain, a layered golden-hour wash, and slow-drifting petals set
  * the mood. Text fades in on scroll (Reveal); the rose line-art draws itself in
  * (RoseSprig); everything is reduced-motion safe.
@@ -139,7 +139,7 @@ export function OurStory() {
 
         <Beat beat={beats.howWeMet} />
 
-        {/* interlude — pull-quote with a blooming thread */}
+        {/* interlude: pull-quote with a blooming thread */}
         <div className="mx-auto mb-[clamp(8px,2vw,16px)] mt-[clamp(56px,9vw,100px)] flex max-w-[620px] flex-col items-center text-center">
           <div className="flex flex-col items-center" aria-hidden="true">
             <span

@@ -9,20 +9,20 @@
  * Never hardcode hex or use raw Tailwind color classes in components.
  * ------------------------------------------------------------------ */
 @theme {
-  /* Fonts — backed by next/font variables (set on <html> in layout.tsx) */
+  /* Fonts: backed by next/font variables (set on <html> in layout.tsx) */
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
   --font-body: var(--font-hanken), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Base palette */
   --color-ivory: #faf4ea; /* primary page background */
   --color-ivory-deep: #f3e9d8; /* alternate section background */
-  --color-coffee: #3e2c22; /* primary body text — always on ivory */
+  --color-coffee: #3e2c22; /* primary body text, always on ivory */
   --color-coffee-soft: #6b5547; /* secondary / muted text */
   --color-coral: #e07856; /* primary accent + CTAs */
   --color-coral-deep: #c75f3f; /* coral hover / pressed */
   --color-peach: #f2c0ac; /* soft accent */
   --color-peach-soft: #f8decf; /* lightest wash / selected fill */
-  --color-gold: #c29b45; /* hairlines, monogram, flourishes — NEVER a fill behind text */
+  --color-gold: #c29b45; /* hairlines, monogram, flourishes: NEVER a fill behind text */
   --color-gold-soft: #dcc489; /* lighter metal line */
   --color-white: #ffffff; /* card surfaces */
 
@@ -59,12 +59,12 @@
   --spacing-10: 128px;
   --spacing-11: 176px;
 
-  /* Shadows — warm, low-opacity, coffee-based (paper, not material UI) */
+  /* Shadows: warm, low-opacity, coffee-based (paper, not material UI) */
   --shadow-soft: 0 1px 2px rgba(62, 44, 34, 0.04), 0 8px 24px rgba(62, 44, 34, 0.06);
   --shadow-card: 0 2px 4px rgba(62, 44, 34, 0.05), 0 18px 48px rgba(62, 44, 34, 0.08);
   --shadow-lift: 0 4px 8px rgba(62, 44, 34, 0.06), 0 28px 64px rgba(62, 44, 34, 0.12);
 
-  /* Motion — gentle only */
+  /* Motion: gentle only */
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 160ms;
@@ -75,7 +75,7 @@
      and hero names apply fluid clamp() in their components per ui-tokens.md. */
   --text-eyebrow: 0.78rem; /* ~12.5px small-caps label */
   --text-caption: 0.875rem; /* 14px */
-  --text-body: 1.0625rem; /* 17px — comfortable body */
+  --text-body: 1.0625rem; /* 17px, comfortable body */
   --text-body-lg: 1.1875rem; /* 19px lead paragraph */
   --text-h6: 1.25rem; /* 20px */
   --text-h5: 1.5rem; /* 24px */
@@ -103,13 +103,13 @@
 }
 
 /* ------------------------------------------------------------------ *
- * Base layer — global resets + paper feel (matches design references).
+ * Base layer: global resets + paper feel (matches design references).
  * ------------------------------------------------------------------ */
 :root {
   /* SVG feTurbulence grain, consumed by the PaperTexture overlay (felt, not seen). */
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  /* Weights — referenced directly via var() where a utility doesn't fit
+  /* Weights: referenced directly via var() where a utility doesn't fit
      (Tailwind's font-* weight utilities cover the common cases). */
   --fw-regular: 400;
   --fw-medium: 500;
@@ -149,7 +149,7 @@ body {
   }
 }
 
-/* Hero entrance — staggered on load. Resting state is fully visible, so under
+/* Hero entrance: staggered on load. Resting state is fully visible, so under
    reduced-motion (no animation) everything simply shows. Delays are set inline
    per element in Hero.tsx. */
 @keyframes hero-rise {
@@ -170,7 +170,7 @@ body {
   .hero-grow { transform-origin: top; animation: hero-grow 0.8s var(--ease-out) both; }
 }
 
-/* Our Story — slow-drifting petals (decorative). Petals rest at opacity 0, so
+/* Our Story: slow-drifting petals (decorative). Petals rest at opacity 0, so
    under reduced-motion (no animation bound) they simply never appear.
    Per-petal duration/delay are set inline in OurStory.tsx. */
 @keyframes petal-drift {
@@ -187,7 +187,7 @@ body {
   }
 }
 
-/* Well-Wishes note cards — gentle alternating tilt (the masonry columns + the
+/* Well-Wishes note cards: gentle alternating tilt (the masonry columns + the
    nth-child rotations are awkward in Tailwind, so they live here). Tilt resets
    on hover and on mobile; transitions are dropped under reduced-motion. */
 .wish-note {

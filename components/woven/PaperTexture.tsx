@@ -6,7 +6,7 @@ type Props = {
   className?: string;
 };
 
-// Fine cross-hatch "woven" weave — felt, not seen (ported from the design .paper layer).
+// Fine cross-hatch "woven" weave, felt, not seen (ported from the design .paper layer).
 const WEAVE =
   "repeating-linear-gradient(45deg, rgba(62,44,34,0.014) 0 1px, transparent 1px 6px)," +
   "repeating-linear-gradient(-45deg, rgba(62,44,34,0.011) 0 1px, transparent 1px 6px)";

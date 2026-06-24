@@ -79,7 +79,7 @@ const STROKE: CSSProperties = {
 type Props = {
   /** "sprig" = bloom + stem + leaves; "bloom" = standalone rosette. */
   variant?: "sprig" | "bloom";
-  /** Stroke colour — gold (default) or coral. */
+  /** Stroke colour: gold (default) or coral. */
   color?: "gold" | "coral";
   className?: string;
 };

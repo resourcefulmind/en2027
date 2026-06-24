@@ -7,6 +7,7 @@ import { PaperTexture } from "@/components/woven/PaperTexture";
 import { Reveal } from "@/components/woven/Reveal";
 import { SectionHeading } from "@/components/woven/SectionHeading";
 import { ThreadIn } from "@/components/woven/ThreadIn";
+import { scrollToSection } from "@/lib/scroll";
 import { cn } from "@/lib/utils";
 
 /**
@@ -19,17 +20,44 @@ import { cn } from "@/lib/utils";
 
 const { faq } = content;
 
-// Render an answer string, muting [bracketed] placeholder tokens.
-function renderAnswer(text: string) {
-  return text.split(/(\[[^\]]*\])/).map((part, i) =>
-    part.startsWith("[") && part.endsWith("]") ? (
-      <span key={i} className="text-coffee-soft">
-        {part}
-      </span>
-    ) : (
-      <Fragment key={i}>{part}</Fragment>
-    ),
-  );
+type AnswerLink = { label: string; to: string };
+
+function escapeRegExp(s: string) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// Render an answer: mute [bracketed] placeholders, and turn any linked label
+// into an anchor that scrolls to its section (e.g. "Details" -> #details).
+function renderAnswer(text: string, links?: readonly AnswerLink[]) {
+  const linkMap = new Map((links ?? []).map((l) => [l.label, l.to]));
+  const tokens = ["\\[[^\\]]*\\]", ...[...linkMap.keys()].map(escapeRegExp)];
+  const re = new RegExp(`(${tokens.join("|")})`, "g");
+  return text.split(re).map((part, i) => {
+    if (part.startsWith("[") && part.endsWith("]")) {
+      return (
+        <span key={i} className="text-coffee-soft">
+          {part}
+        </span>
+      );
+    }
+    const to = linkMap.get(part);
+    if (to) {
+      return (
+        <a
+          key={i}
+          href={`#${to}`}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection(to);
+          }}
+          className="font-medium text-coral underline decoration-[rgba(224,120,86,0.45)] underline-offset-2 transition-colors duration-200 hover:text-coral-deep hover:decoration-coral"
+        >
+          {part}
+        </a>
+      );
+    }
+    return <Fragment key={i}>{part}</Fragment>;
+  });
 }
 
 function Indicator({ open }: { open: boolean }) {
@@ -47,12 +75,14 @@ function Item({
   itemKey,
   q,
   a,
+  links,
   open,
   onToggle,
 }: {
   itemKey: string;
   q: string;
   a: string;
+  links?: readonly AnswerLink[];
   open: boolean;
   onToggle: () => void;
 }) {
@@ -95,7 +125,7 @@ function Item({
               className="absolute left-0 top-0.5 bottom-[clamp(22px,3.4vw,28px)] w-0.5 rounded-sm bg-coral opacity-80"
             />
             <p className="m-0 max-w-[60ch] font-body text-[clamp(15px,3.2vw,16.5px)] leading-[1.68] text-coffee text-pretty">
-              {renderAnswer(a)}
+              {renderAnswer(a, links)}
             </p>
           </div>
         </div>
@@ -149,6 +179,7 @@ export function Faq() {
                     itemKey={key}
                     q={item.q}
                     a={item.a}
+                    links={"links" in item ? item.links : undefined}
                     open={openKey === key}
                     onToggle={() => setOpenKey((prev) => (prev === key ? "" : key))}
                   />

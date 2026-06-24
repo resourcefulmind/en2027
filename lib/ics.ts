@@ -31,7 +31,7 @@ export function buildIcs(): string {
   const end = new Date(start.getTime() + DURATION_HOURS * 60 * 60 * 1000);
   const dtStart = toIcsUtc(start);
 
-  const summary = `${content.couple.namesDisplay} — ${content.event.framing}`;
+  const summary = `${content.couple.namesDisplay}: ${content.event.framing}`;
   const location = `${content.event.venueName}, ${content.event.venueAddress}`;
   const description = `Join ${content.couple.namesDisplay} as they celebrate their ${content.event.framing}.`;
 

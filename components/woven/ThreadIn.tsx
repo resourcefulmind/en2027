@@ -7,7 +7,7 @@ type Props = {
 /**
  * The per-section top connector: a thin coral line fading down into a small gold
  * bead. Stacked atop each section, these read as ONE continuous coral thread down
- * the page (the site's signature — see ui-rules.md). Built once, reused everywhere.
+ * the page (the site's signature; see ui-rules.md). Built once, reused everywhere.
  */
 export function ThreadIn({ className }: Props) {
   return (

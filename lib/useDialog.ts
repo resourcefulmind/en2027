@@ -5,7 +5,7 @@ import { useEffect, useRef, type RefObject } from "react";
 /**
  * The shared modal a11y plumbing (feature 14): while `open`, lock body scroll,
  * focus an initial element, close on Escape, and restore focus to whatever was
- * focused before on close. Deliberately small — scrims, slide/entrance
+ * focused before on close. Deliberately small: scrims, slide/entrance
  * animations, and arrow-key navigation stay in each modal's own component.
  */
 export function useDialog(
@@ -24,7 +24,7 @@ export function useDialog(
     if (!open) return;
     const lastFocus = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
-    // preventScroll so focus management never yanks the page — e.g. a close
+    // preventScroll so focus management never yanks the page, e.g. a close
     // action that also scrolls elsewhere isn't undone by restoring focus.
     initialFocus?.current?.focus({ preventScroll: true });
     const onKey = (e: KeyboardEvent) => {

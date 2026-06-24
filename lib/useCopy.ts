@@ -25,7 +25,7 @@ export function useCopy(duration = 1900) {
         try {
           document.execCommand("copy");
         } catch {
-          /* no-op — clipboard unavailable */
+          /* no-op: clipboard unavailable */
         }
         ta.remove();
       }

@@ -9,10 +9,10 @@ import { useReveal } from "@/lib/useReveal";
 import { cn } from "@/lib/utils";
 
 /**
- * Footer (Feature 12) — the closing movement. The coral thread arrives from the
+ * Footer (Feature 12): the closing movement. The coral thread arrives from the
  * section above and resolves into a gold knot (drawn via useReveal), then the EN
  * crest, names, date, the groom's formal honour, a rose flourish, the closing
- * line, and the hashtag — over a dusk wash deepening at the very bottom. Content
+ * line, and the hashtag, over a dusk wash deepening at the very bottom. Content
  * reveals via Reveal; reduced-motion shows everything.
  */
 
@@ -24,7 +24,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden px-[22px] pb-[clamp(64px,11vw,110px)] text-center">
       <PaperTexture grain className="z-0" />
-      {/* dusk — golden-hour wash deepening toward the base */}
+      {/* dusk: golden-hour wash deepening toward the base */}
       <span
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[60%]"

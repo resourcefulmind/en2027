@@ -2,7 +2,7 @@ import { z } from "zod";
 
 /**
  * Shared zod schemas (feature 13). Validated client-side for UX and server-side
- * for trust — never trust the client. Inferred types are the single source of
+ * for trust: never trust the client. Inferred types are the single source of
  * truth for the persisted shapes.
  */
 

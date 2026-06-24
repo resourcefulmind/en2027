@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 type RevealOptions = {
   /** Fraction of the element visible before it reveals. */
   threshold?: number;
-  /** Observer root margin — design pulls the trigger up 8% from the bottom. */
+  /** Observer root margin: design pulls the trigger up 8% from the bottom. */
   rootMargin?: string;
   /** Reveal once then stop observing (default true). */
   once?: boolean;

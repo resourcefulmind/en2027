@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
  * scroll. Faithful port of design/Navigation.html: one rAF-throttled scroll
  * handler drives both the frost toggle and active-section tracking, anchor
  * links scroll via window.scrollTo with a nav-height offset, and a right-slide
- * sheet handles mobile. Section ids below are the contract Features 04–12 must
+ * sheet handles mobile. Section ids below are the contract Features 04 to 12 must
  * adopt on their <section> wrappers.
  */
 
@@ -121,7 +121,7 @@ export function Navigation() {
         <button
           type="button"
           onClick={go(HERO_ID)}
-          aria-label={`${content.couple.namesDisplay} — back to top`}
+          aria-label={`${content.couple.namesDisplay}, back to top`}
           className="-m-1.5 inline-flex cursor-pointer items-center rounded-full p-1.5 leading-[0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus-ring)]"
         >
           <Monogram size={44} crest />

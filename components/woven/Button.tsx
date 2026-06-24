@@ -12,9 +12,9 @@ type CommonProps = {
 /**
  * Polymorphic CTA. Renders an <a> when `href` is given (anchor links, Maps,
  * registry), otherwise a <button>. Variants per ui-rules.md:
- *   primary  — coral fill + white label, pill
- *   secondary — gold-hairline outline on ivory
- *   ghost    — quiet text → coral on hover, fine gold underline
+ *   primary:   coral fill + white label, pill
+ *   secondary: gold-hairline outline on ivory
+ *   ghost:     quiet text → coral on hover, fine gold underline
  */
 type ButtonProps = CommonProps &
   (

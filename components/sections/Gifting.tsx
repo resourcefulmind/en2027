@@ -15,7 +15,7 @@ import { useToast } from "@/lib/useToast";
 import { cn } from "@/lib/utils";
 
 /**
- * Gifting (Feature 10). Display-only — no payments. A gracious intro, two cash
+ * Gifting (Feature 10). Display-only, no payments. A gracious intro, two cash
  * account cards (Naira + Foreign) with copy-to-clipboard on the account number /
  * IBAN, and a registry block. The registry link is live only when a real URL is
  * set (else a disabled button); copy actions confirm via the shared Toast.

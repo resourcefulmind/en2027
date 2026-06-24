@@ -110,7 +110,7 @@ export function Schedule() {
           />
 
           <div className="relative z-[1]">
-            {/* the coral spine — draws in on reveal */}
+            {/* the coral spine, draws in on reveal */}
             <span
               aria-hidden="true"
               className={cn(

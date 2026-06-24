@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
  * Live ceremony countdown (Feature 05, built with the Hero). Ticks every second
  * toward content.event.isoDateTime. Hydration-safe: renders stable "00"
  * placeholders on the server and first client paint, then starts ticking after
- * mount — so server and client markup always match. Keeps ticking under
+ * mount, so server and client markup always match. Keeps ticking under
  * reduced-motion (it's live information, not decorative motion).
  */
 
