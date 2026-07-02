@@ -177,7 +177,15 @@ export const content = {
         label: "GETTING THERE",
         items: [
           { q: "Is there parking?", a: "Yes, there's parking at the venue." },
-          { q: "Where can I stay?", a: "For those travelling in, we'll point you to a few places near the venue. [HOTEL LIST: pending]" },
+          {
+            q: "Where can I stay?",
+            a: "For guests travelling in, here are a few comfortable places near the venue:",
+            hotels: [
+              { name: "Frostaro Hotel", area: "Achingali, Obowo", mapQuery: "Frostaro Hotel, Achingali, Obowo, Imo State" },
+              { name: "Omenma Hotels", area: "Oparachi Mbaukwu, Ihitte Ezinihitte", mapQuery: "Omenma Hotels, 1 Omenma Avenue, Oparachi Mbaukwu, Ihitte Ezinihitte, Mbaise, Imo State" },
+              { name: "Chris VI Hotels & Resort", area: "Ahiara Junction, Ahiazu Mbaise", mapQuery: "Chris VI Hotels and Resort, Owerri-Umuahia Road, Ahiazu Mbaise, Imo State" },
+            ],
+          },
           { q: "Can I bring a guest or plus-one?", a: "Loved ones are welcome. Please tell us your numbers when you RSVP, so we can seat everyone comfortably." },
         ],
       },
