@@ -129,7 +129,6 @@ function AccountCard({
 }
 
 const MONO_BIG = "font-display text-[clamp(20px,5.2vw,26px)] tracking-[0.03em] leading-[1.1] tabular-nums";
-const MONO_SM = "font-body text-[clamp(15px,3.6vw,17px)] tracking-[0.04em] tabular-nums";
 
 export function Gifting() {
   const { toast, showToast } = useToast();
@@ -167,8 +166,8 @@ export function Gifting() {
             <span aria-hidden="true" className="h-px flex-1 bg-[rgba(194,155,69,0.4)]" />
           </Reveal>
 
-          <div className="flex flex-col items-stretch gap-[clamp(16px,3vw,22px)] min-[760px]:flex-row">
-            <AccountCard badge={gifting.naira.label} badgeVariant="coral" delayMs={0}>
+          <div className="mx-auto w-full max-w-[440px]">
+            <AccountCard badge={gifting.naira.label} badgeVariant="coral">
               <Field label="Account Name" value={gifting.naira.accountName} />
               <CopyField
                 label="Account Number"
@@ -177,24 +176,6 @@ export function Gifting() {
                 onCopied={copied}
               />
               <Field label="Bank Name" value={gifting.naira.bank} />
-            </AccountCard>
-
-            <AccountCard badge={gifting.foreign.label} badgeVariant="gold-outline" delayMs={80}>
-              <Field label="Account Name" value={gifting.foreign.accountName} />
-              <CopyField
-                label="Account Number"
-                value={gifting.foreign.accountNumber}
-                valueClassName={MONO_BIG}
-                onCopied={copied}
-              />
-              <Field label="Bank Name" value={gifting.foreign.bank} />
-              <CopyField
-                label="IBAN"
-                value={gifting.foreign.iban}
-                valueClassName={MONO_SM}
-                onCopied={copied}
-              />
-              <Field label="SWIFT / BIC" value={gifting.foreign.swift} valueClassName={MONO_SM} />
             </AccountCard>
           </div>
 

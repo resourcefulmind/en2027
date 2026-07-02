@@ -42,6 +42,22 @@ function renderAnswer(text: string, links?: readonly AnswerLink[]) {
     }
     const to = linkMap.get(part);
     if (to) {
+      const linkClass =
+        "font-medium text-coral underline decoration-[rgba(224,120,86,0.45)] underline-offset-2 transition-colors duration-200 hover:text-coral-deep hover:decoration-coral";
+      // A tel:/http `to` is a real href (phone or external link); anything else
+      // is an in-page section id we scroll to smoothly.
+      if (/^(tel:|https?:)/.test(to)) {
+        return (
+          <a
+            key={i}
+            href={to}
+            {...(to.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            className={linkClass}
+          >
+            {part}
+          </a>
+        );
+      }
       return (
         <a
           key={i}
@@ -50,7 +66,7 @@ function renderAnswer(text: string, links?: readonly AnswerLink[]) {
             e.preventDefault();
             scrollToSection(to);
           }}
-          className="font-medium text-coral underline decoration-[rgba(224,120,86,0.45)] underline-offset-2 transition-colors duration-200 hover:text-coral-deep hover:decoration-coral"
+          className={linkClass}
         >
           {part}
         </a>
