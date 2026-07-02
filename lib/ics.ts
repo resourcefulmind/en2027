@@ -26,14 +26,41 @@ function esc(s: string): string {
     .replace(/\n/g, "\\n");
 }
 
-export function buildIcs(): string {
+// Start/end and the display text, shared so the .ics download and the Google
+// Calendar link are always built from the same event and never drift.
+function eventTimes() {
   const start = new Date(content.event.isoDateTime);
   const end = new Date(start.getTime() + DURATION_HOURS * 60 * 60 * 1000);
-  const dtStart = toIcsUtc(start);
+  return { start, end };
+}
 
-  const summary = `${content.couple.namesDisplay}: ${content.event.framing}`;
-  const location = `${content.event.venueName}, ${content.event.venueAddress}`;
-  const description = `Join ${content.couple.namesDisplay} as they celebrate their ${content.event.framing}.`;
+function eventText() {
+  return {
+    summary: `${content.couple.namesDisplay}: ${content.event.framing}`,
+    location: `${content.event.venueName}, ${content.event.venueAddress}`,
+    description: `Join ${content.couple.namesDisplay} as they celebrate their ${content.event.framing}.`,
+  };
+}
+
+// A pre-filled Google Calendar event the guest just taps "Save" on (no download,
+// no import). Times are the same UTC stamps the .ics uses.
+export function googleCalendarUrl(): string {
+  const { start, end } = eventTimes();
+  const { summary, location, description } = eventText();
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: summary,
+    dates: `${toIcsUtc(start)}/${toIcsUtc(end)}`,
+    location,
+    details: description,
+  });
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+export function buildIcs(): string {
+  const { start, end } = eventTimes();
+  const { summary, location, description } = eventText();
+  const dtStart = toIcsUtc(start);
 
   return [
     "BEGIN:VCALENDAR",
