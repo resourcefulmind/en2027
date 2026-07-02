@@ -25,7 +25,7 @@ export const content = {
     // Groom's full title, honoured in the FOOTER formal close, not the hero.
     groomFormal: "High Chief Nnamdi Johnson Obioha",
     groomTitle: "Ikeoha 1 of Lude",
-    hashtag: "[#HASHTAG]", // couple to pick; suggestions in the content script
+    hashtag: "#MEETHEOBIOHAS",
   },
 
   event: {
@@ -60,28 +60,25 @@ export const content = {
     eyebrow: "OUR STORY",
     heading: "Where our story begins",
     lede: "Every love has its beginning: a first glance, a first word, a moment that quietly changed everything. Here is a little of ours.",
-    // Beat bodies are PLACEHOLDERS in the right voice. Replace each with the
-    // couple's actual words. Labels + headings can stay as-is.
     beats: {
       howWeMet: {
         label: "How We Met",
         heading: "Where we began",
         body: [
-          "[PLACEHOLDER, where Ebere & Nnamdi met: the place, who said hello first, the detail they still tease each other about.]",
-          "[PLACEHOLDER, the part that made it more than chance: the call the next morning, the way everything felt a little warmer after.]",
+          "It began in January 2026, at the opening of Nnamdi's sister Jennifer's shop. Ebere was there among family, moving through the room, helping wherever she was needed. Nnamdi noticed her before she ever noticed him, and quietly decided, right there, that he had found her.",
+          "He wasted no time telling her so. \"Ebere, I'll marry you,\" he would say, again and again, until the teasing became a promise. She thought it was all too fast, too good to be quite true. Then came an afternoon by the beach, and whatever small doubt remained was gone: this was the woman he would build a life with.",
         ],
       },
       proposal: {
         label: "The Proposal",
         heading: "The question",
         body: [
-          "[PLACEHOLDER, the proposal: the place, the hour, who knew and who didn't, the quiet just before the question.]",
-          "[PLACEHOLDER, and then the yes, and the people who appeared to celebrate (or the quiet they kept for the two of them).]",
+          "The distance between them meant the question came the way so many of their evenings did: over the phone, late into the night, just the two of them. Mid-conversation, Nnamdi asked. A ring followed soon after, sent ahead of him until he could place it on her hand himself.",
+          "She said yes, a big one. His sisters, who had loved her from the start, were hardly surprised; they had been calling her \"Mrs\" long before the question was ever asked. By the next morning her phone had not stopped ringing, full of everyone who had been waiting for this. He calls her Oguguom, his gift from God, and now the whole family agrees.",
         ],
       },
     },
-    pullQuote:
-      "And somewhere between hello and forever, we stopped counting the days apart.",
+    pullQuote: "\"I no tell you say I go marry you.\"",
   },
 
   details: {
@@ -139,8 +136,7 @@ export const content = {
     heading: "Your presence is the greatest gift",
     intro:
       "Nothing means more to us than having you there. For those who would also like to bless the home we are beginning, we have gathered a few ways below.",
-    naira: { label: "₦ NAIRA", accountName: "[ACCOUNT NAME]", accountNumber: "[0000000000]", bank: "[BANK NAME]" },
-    foreign: { label: "FOREIGN", accountName: "[ACCOUNT NAME]", accountNumber: "[0000000000]", bank: "[BANK NAME]", iban: "[IBAN]", swift: "[SWIFT]" }, // confirm Euro or Dollar
+    naira: { label: "₦ NAIRA", accountName: "Ebere Ibeawuchi Ezinma", accountNumber: "0037205514", bank: "GTBank" },
     registry: { line: "Prefer to gift an item? Visit our registry.", cta: "VIEW OUR REGISTRY", url: "[registry-url]" },
   },
 
@@ -190,12 +186,21 @@ export const content = {
         items: [
           { q: "Are children welcome?", a: "Yes, very much. Children are welcome to celebrate with us." },
           { q: "What gifts would the couple appreciate?", a: "Your presence is the greatest gift. For those who'd like to do more, the Gifting section holds our registry and account details.", links: [{ label: "Gifting section", to: "gifting" }] },
-          { q: "Is there a wedding hashtag?", a: "Yes. Tag your photos with [#HASHTAG] so we can relive the day through your eyes." },
-          { q: "Who do I contact with questions?", a: "[CONTACT NAME] will be glad to help, on [PHONE/WHATSAPP]." },
+          { q: "Is there a wedding hashtag?", a: "Yes. Tag your photos with #MEETHEOBIOHAS so we can relive the day through your eyes." },
+          {
+            q: "Who do I contact with questions?",
+            a: "Mrs Onyi will be glad to help, on +234 803 784 9690. You may also reach Mrs Peggy Azeez on +234 808 027 7281, Mrs Akudo on +234 803 661 4909, or Mr Obinna on +234 803 057 8336.",
+            links: [
+              { label: "+234 803 784 9690", to: "tel:+2348037849690" },
+              { label: "+234 808 027 7281", to: "tel:+2348080277281" },
+              { label: "+234 803 661 4909", to: "tel:+2348036614909" },
+              { label: "+234 803 057 8336", to: "tel:+2348030578336" },
+            ],
+          },
         ],
       },
     ],
-    closing: "Still wondering about something? Reach out to [CONTACT] and we'll help.",
+    closing: "Still wondering about something? Reach out to Mrs Onyi and we'll gladly help.",
   },
 
   footer: {
