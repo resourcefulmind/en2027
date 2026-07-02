@@ -22,6 +22,10 @@ const { faq } = content;
 
 type AnswerLink = { label: string; to: string };
 type Contact = { name: string; tel: string; display: string };
+type Hotel = { name: string; area: string; mapQuery: string };
+
+const mapsSearch = (q: string) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 
 // Shared coral link styling for in-answer anchors and contact actions.
 const LINK_CLASS =
@@ -96,6 +100,7 @@ function Item({
   a,
   links,
   contacts,
+  hotels,
   open,
   onToggle,
 }: {
@@ -104,6 +109,7 @@ function Item({
   a: string;
   links?: readonly AnswerLink[];
   contacts?: readonly Contact[];
+  hotels?: readonly Hotel[];
   open: boolean;
   onToggle: () => void;
 }) {
@@ -175,6 +181,29 @@ function Item({
                 ))}
               </ul>
             ) : null}
+            {hotels && hotels.length > 0 ? (
+              <ul className="mt-3.5 flex flex-col gap-3">
+                {hotels.map((h) => (
+                  <li
+                    key={h.name}
+                    className="flex flex-col gap-0.5 font-body text-[clamp(15px,3.2vw,16.5px)] leading-[1.5]"
+                  >
+                    <span className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
+                      <span className="font-medium text-coffee">{h.name}</span>
+                      <a
+                        href={mapsSearch(h.mapQuery)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={LINK_CLASS}
+                      >
+                        View on map
+                      </a>
+                    </span>
+                    <span className="text-[0.92em] text-coffee-soft">{h.area}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </div>
       </div>
@@ -229,6 +258,7 @@ export function Faq() {
                     a={item.a}
                     links={"links" in item ? item.links : undefined}
                     contacts={"contacts" in item ? item.contacts : undefined}
+                    hotels={"hotels" in item ? item.hotels : undefined}
                     open={openKey === key}
                     onToggle={() => setOpenKey((prev) => (prev === key ? "" : key))}
                   />

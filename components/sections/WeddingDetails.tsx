@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { content } from "@/content";
 import { Button } from "@/components/woven/Button";
 import { PaperTexture } from "@/components/woven/PaperTexture";
@@ -8,8 +8,9 @@ import { Reveal } from "@/components/woven/Reveal";
 import { SectionHeading } from "@/components/woven/SectionHeading";
 import { ThreadIn } from "@/components/woven/ThreadIn";
 import { Toast } from "@/components/woven/Toast";
-import { buildIcs } from "@/lib/ics";
+import { buildIcs, googleCalendarUrl } from "@/lib/ics";
 import { useToast } from "@/lib/useToast";
+import { cn } from "@/lib/utils";
 
 /**
  * Wedding Details (Feature 07). Venue / Time / Dress Code cards, then Open in
@@ -175,20 +176,94 @@ export function WeddingDetails() {
               <PinIcon />
               Open in Maps
             </Button>
-            <Button
-              variant="secondary"
-              onClick={addToCalendar}
-              className="gap-2.5 hover:bg-[rgba(194,155,69,0.12)] [&>svg]:size-4 [&>svg]:text-gold"
-            >
-              <CalendarIcon />
-              Add to Calendar
-            </Button>
+            <CalendarMenu onIcs={addToCalendar} />
           </Reveal>
         </div>
       </section>
 
       <Toast message={toast} />
     </>
+  );
+}
+
+// One "Add to Calendar" button that opens a small popover: Google Calendar (a
+// pre-filled event, one tap to save) or an .ics download for Apple / Outlook.
+// Opens upward so the section's overflow-hidden never clips it; closes on
+// outside-click or Escape.
+function CalendarMenu({ onIcs }: { onIcs: () => void }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointer = (e: PointerEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const itemClass =
+    "flex w-full items-center gap-2.5 rounded-[4px] px-3 py-2.5 text-left font-body text-[12px] font-bold uppercase tracking-[0.1em] text-coffee no-underline transition-colors duration-150 hover:bg-[rgba(224,120,86,0.1)] hover:text-coral-deep focus-visible:outline-none focus-visible:bg-[rgba(224,120,86,0.1)] [&>svg]:size-4 [&>svg]:flex-none [&>svg]:text-gold";
+
+  return (
+    <div ref={ref} className="relative">
+      <Button
+        variant="secondary"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        className="gap-2.5 hover:bg-[rgba(194,155,69,0.12)] [&>svg]:size-4 [&>svg]:text-gold"
+      >
+        <CalendarIcon />
+        Add to Calendar
+        <ChevronIcon className={cn("transition-transform duration-200", open && "rotate-180")} />
+      </Button>
+
+      {open ? (
+        <div
+          role="menu"
+          aria-label="Add to calendar options"
+          className="absolute bottom-[calc(100%+11px)] left-1/2 z-20 w-[240px] -translate-x-1/2 rounded-[6px] border border-gold bg-ivory p-1.5 shadow-[0_2px_6px_rgba(62,44,34,0.08),0_18px_44px_rgba(62,44,34,0.18)]"
+          style={{ backgroundImage: CARD_GRAIN }}
+        >
+          <a
+            role="menuitem"
+            href={googleCalendarUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className={itemClass}
+          >
+            <ExternalIcon />
+            Google Calendar
+          </a>
+          <button
+            role="menuitem"
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              onIcs();
+            }}
+            className={itemClass}
+          >
+            <DownloadIcon />
+            Apple / Outlook
+          </button>
+          <span
+            aria-hidden="true"
+            className="absolute -bottom-[6px] left-1/2 size-3 -translate-x-1/2 rotate-45 border-b border-r border-gold bg-ivory"
+          />
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -232,6 +307,27 @@ function CalendarIcon() {
     <svg viewBox="0 0 24 24" {...stroke}>
       <rect x="3" y="4.5" width="18" height="17" rx="2" />
       <path d="M3 9h18M8 2.5v4M16 2.5v4M12 13v5M9.5 15.5h5" />
+    </svg>
+  );
+}
+function ChevronIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+function ExternalIcon() {
+  return (
+    <svg viewBox="0 0 24 24" {...stroke}>
+      <path d="M7 17 17 7M9 7h8v8" />
+    </svg>
+  );
+}
+function DownloadIcon() {
+  return (
+    <svg viewBox="0 0 24 24" {...stroke}>
+      <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
     </svg>
   );
 }
