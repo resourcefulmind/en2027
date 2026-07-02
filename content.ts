@@ -170,7 +170,7 @@ export const content = {
           { q: "What should I wear?", a: "Our colours are coral, coffee brown, and gold. We'd love the men in coffee brown and the women in coral or coral peach. Most of all, come ready to celebrate." },
           { q: "When and where is it?", a: "Tuesday, 5 January 2027, at 1:00 PM, at Central School Onicha Combine, Onicha Ezinihitte, Mbaise. You'll find directions in the Details above.", links: [{ label: "Details", to: "details" }] },
           { q: "Is this the traditional ceremony or the white wedding?", a: "This is our traditional marriage, our Igba Nkwu. One celebration, one day, one venue." },
-          { q: "How do I RSVP, and by when?", a: "Just fill in the RSVP form below. We'd be grateful to hear from you by [RSVP DEADLINE].", links: [{ label: "RSVP form", to: "rsvp" }] },
+          { q: "How do I RSVP?", a: "Just fill in the RSVP form below. There's no strict deadline, but the sooner you let us know, the better we can plan to welcome you.", links: [{ label: "RSVP form", to: "rsvp" }] },
         ],
       },
       {
@@ -189,18 +189,22 @@ export const content = {
           { q: "Is there a wedding hashtag?", a: "Yes. Tag your photos with #MEETHEOBIOHAS so we can relive the day through your eyes." },
           {
             q: "Who do I contact with questions?",
-            a: "Mrs Onyi will be glad to help, on +234 803 784 9690. You may also reach Mrs Peggy Azeez on +234 808 027 7281, Mrs Akudo on +234 803 661 4909, or Mr Obinna on +234 803 057 8336.",
-            links: [
-              { label: "+234 803 784 9690", to: "tel:+2348037849690" },
-              { label: "+234 808 027 7281", to: "tel:+2348080277281" },
-              { label: "+234 803 661 4909", to: "tel:+2348036614909" },
-              { label: "+234 803 057 8336", to: "tel:+2348030578336" },
+            a: "For anything at all, these lovely people will be glad to help. Mr Obinna and Mrs Akudo are your first ports of call.",
+            contacts: [
+              { name: "Mr Obinna", tel: "+2348030578336", display: "+234 803 057 8336" },
+              { name: "Mrs Akudo", tel: "+2348036614909", display: "+234 803 661 4909" },
+              { name: "Mrs Onyi", tel: "+2348037849690", display: "+234 803 784 9690" },
+              { name: "Mrs Peggy Azeez", tel: "+2348080277281", display: "+234 808 027 7281" },
             ],
           },
         ],
       },
     ],
-    closing: "Still wondering about something? Reach out to Mrs Onyi and we'll gladly help.",
+    closing: "Still wondering about something? Reach out to Mr Obinna or Mrs Akudo and we'll gladly help.",
+    closingLinks: [
+      { label: "Mr Obinna", to: "tel:+2348030578336" },
+      { label: "Mrs Akudo", to: "tel:+2348036614909" },
+    ],
   },
 
   footer: {
@@ -213,7 +217,7 @@ export const content = {
   rsvp: {
     eyebrow: "JOIN US",
     heading: "Kindly Respond",
-    subline: "We would be honoured to have you with us. Kindly let us know by [RSVP DEADLINE].",
+    subline: "We would be honoured to have you with us. Kindly let us know whether you can join us.",
     accept: "Joyfully accepts",
     decline: "Regretfully declines",
     declineNote: "We'll miss you, but thank you for letting us know.",

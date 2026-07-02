@@ -21,6 +21,11 @@ import { cn } from "@/lib/utils";
 const { faq } = content;
 
 type AnswerLink = { label: string; to: string };
+type Contact = { name: string; tel: string; display: string };
+
+// Shared coral link styling for in-answer anchors and contact actions.
+const LINK_CLASS =
+  "font-medium text-coral underline decoration-[rgba(224,120,86,0.45)] underline-offset-2 transition-colors duration-200 hover:text-coral-deep hover:decoration-coral";
 
 function escapeRegExp(s: string) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -42,8 +47,6 @@ function renderAnswer(text: string, links?: readonly AnswerLink[]) {
     }
     const to = linkMap.get(part);
     if (to) {
-      const linkClass =
-        "font-medium text-coral underline decoration-[rgba(224,120,86,0.45)] underline-offset-2 transition-colors duration-200 hover:text-coral-deep hover:decoration-coral";
       // A tel:/http `to` is a real href (phone or external link); anything else
       // is an in-page section id we scroll to smoothly.
       if (/^(tel:|https?:)/.test(to)) {
@@ -52,7 +55,7 @@ function renderAnswer(text: string, links?: readonly AnswerLink[]) {
             key={i}
             href={to}
             {...(to.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            className={linkClass}
+            className={LINK_CLASS}
           >
             {part}
           </a>
@@ -66,7 +69,7 @@ function renderAnswer(text: string, links?: readonly AnswerLink[]) {
             e.preventDefault();
             scrollToSection(to);
           }}
-          className={linkClass}
+          className={LINK_CLASS}
         >
           {part}
         </a>
@@ -92,6 +95,7 @@ function Item({
   q,
   a,
   links,
+  contacts,
   open,
   onToggle,
 }: {
@@ -99,6 +103,7 @@ function Item({
   q: string;
   a: string;
   links?: readonly AnswerLink[];
+  contacts?: readonly Contact[];
   open: boolean;
   onToggle: () => void;
 }) {
@@ -143,6 +148,33 @@ function Item({
             <p className="m-0 max-w-[60ch] font-body text-[clamp(15px,3.2vw,16.5px)] leading-[1.68] text-coffee text-pretty">
               {renderAnswer(a, links)}
             </p>
+            {contacts && contacts.length > 0 ? (
+              <ul className="mt-3.5 flex flex-col gap-2.5">
+                {contacts.map((c) => (
+                  <li
+                    key={c.tel}
+                    className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5 font-body text-[clamp(15px,3.2vw,16.5px)] leading-[1.6]"
+                  >
+                    <span className="font-medium text-coffee">{c.name}</span>
+                    <span className="text-[0.9em] tabular-nums text-coffee-soft">{c.display}</span>
+                    <a href={`tel:${c.tel}`} className={LINK_CLASS}>
+                      Call
+                    </a>
+                    <span aria-hidden="true" className="text-coffee-soft opacity-40">
+                      ·
+                    </span>
+                    <a
+                      href={`https://wa.me/${c.tel.replace(/[^0-9]/g, "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={LINK_CLASS}
+                    >
+                      WhatsApp
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </div>
       </div>
@@ -196,6 +228,7 @@ export function Faq() {
                     q={item.q}
                     a={item.a}
                     links={"links" in item ? item.links : undefined}
+                    contacts={"contacts" in item ? item.contacts : undefined}
                     open={openKey === key}
                     onToggle={() => setOpenKey((prev) => (prev === key ? "" : key))}
                   />
@@ -208,7 +241,7 @@ export function Faq() {
         <Reveal className="mt-[clamp(40px,7vw,60px)] flex flex-col items-center text-center">
           <Divider className="mb-[clamp(20px,3.5vw,28px)] max-w-[min(220px,60%)]" />
           <p className="m-0 font-display text-[clamp(17px,3.8vw,22px)] font-medium italic text-coffee">
-            {renderAnswer(faq.closing)}
+            {renderAnswer(faq.closing, faq.closingLinks)}
           </p>
         </Reveal>
       </div>
