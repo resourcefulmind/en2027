@@ -37,7 +37,9 @@ export const content = {
     venueAddress: "Onicha Ezinihitte, Mbaise, Imo State",
     footerPlace: "Onicha Ezinihitte",
     framing: "Igbo traditional marriage (Igba Nkwu)",
-    mapUrl: "[map-url]",
+    // Blank = "Open in Maps" auto-searches the venue name + address (same as the
+    // hotels). Paste a specific Google Maps pin here later to override.
+    mapUrl: "",
   },
 
   nav: {
@@ -98,8 +100,7 @@ export const content = {
     eyebrow: "THE DAY",
     heading: "Order of the Day",
     subline: "How the celebration unfolds.",
-    // Only the 1:00 PM start is confirmed; rest is a culturally-appropriate Igba Nkwu DRAFT.
-    // [CONFIRM the real order of the day + times with the couple.]
+    // Order of the day + times confirmed by the couple.
     events: [
       { time: "1:00 PM", title: "Arrival & Welcome", note: "Guests are seated; refreshments served." },
       { time: "2:00 PM", title: "Kola & Prayers", note: "The families gather; the breaking of kola and blessings." },
