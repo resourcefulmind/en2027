@@ -14,8 +14,7 @@ import { cn } from "@/lib/utils";
  * FAQ (Feature 11). A gold-hairline accordion in three tiers. Single-open (first
  * item open by default; clicking the open question closes it). The answer opens
  * via a grid 0fr→1fr transition (no height measurement); reduced-motion makes it
- * instant. Bracketed placeholders in answers are rendered muted (couple fills at
- * feature 16). All content from content.faq.
+ * instant. All content from content.faq.
  */
 
 const { faq } = content;
@@ -35,20 +34,13 @@ function escapeRegExp(s: string) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-// Render an answer: mute [bracketed] placeholders, and turn any linked label
-// into an anchor that scrolls to its section (e.g. "Details" -> #details).
+// Render an answer, turning any linked label into an anchor that scrolls to
+// its section (e.g. "Details" -> #details).
 function renderAnswer(text: string, links?: readonly AnswerLink[]) {
-  const linkMap = new Map((links ?? []).map((l) => [l.label, l.to]));
-  const tokens = ["\\[[^\\]]*\\]", ...[...linkMap.keys()].map(escapeRegExp)];
-  const re = new RegExp(`(${tokens.join("|")})`, "g");
+  if (!links?.length) return text;
+  const linkMap = new Map(links.map((l) => [l.label, l.to]));
+  const re = new RegExp(`(${[...linkMap.keys()].map(escapeRegExp).join("|")})`, "g");
   return text.split(re).map((part, i) => {
-    if (part.startsWith("[") && part.endsWith("]")) {
-      return (
-        <span key={i} className="text-coffee-soft">
-          {part}
-        </span>
-      );
-    }
     const to = linkMap.get(part);
     if (to) {
       // A tel:/http `to` is a real href (phone or external link); anything else

@@ -14,8 +14,8 @@ import { cn } from "@/lib/utils";
  * Gallery (Feature 09). An editorial layout of framed photos: one wide
  * feature tile + a CSS-columns masonry, each a button opening a lightbox
  * (prev/next/close, keyboard, scrim, focus handling, scroll lock). Tiles come
- * from content.gallery.tiles; a tile without `src` keeps the monogram
- * placeholder, and the "Photographs coming soon" note shows while any do.
+ * from content.gallery.tiles; a tile without `src` is left out until its
+ * photo arrives, so the gallery only ever shows real photographs.
  */
 
 const { gallery } = content;
@@ -27,9 +27,16 @@ type GalleryTile = {
   alt?: string;
   position?: string;
 };
-const TILES: readonly GalleryTile[] = gallery.tiles;
-
-const ALL_PHOTOS_IN = TILES.every((t) => t.src);
+type PhotoTile = GalleryTile & { src: string; alt: string };
+const TILES = (gallery.tiles as readonly GalleryTile[]).filter(
+  (t): t is PhotoTile => Boolean(t.src && t.alt),
+);
+// The wide feature tile leads only while its photo is in.
+const FEATURE = TILES[0]?.feature ? TILES[0] : null;
+const MASONRY_START = FEATURE ? 1 : 0;
+// Three columns only once there are enough tiles to fill them; CSS columns
+// balance a short list into two and would leave the third empty.
+const WIDE_COLUMNS = TILES.length - MASONRY_START >= 6;
 
 // "21 / 9" -> 2.333...
 const ratioOf = (aspect: string) => {
@@ -43,7 +50,7 @@ function Tile({
   onOpen,
 }: {
   index: number;
-  tile: GalleryTile;
+  tile: PhotoTile;
   onOpen: (i: number) => void;
 }) {
   const { aspect, feature, src, alt, position } = tile;
@@ -63,12 +70,10 @@ function Tile({
         />
       ) : null}
       <PhotoFrame
-        monoSize={feature ? 64 : 46}
-        label={feature ? "Couple's Photograph" : undefined}
         src={src}
         alt={alt}
         position={position}
-        sizes={feature ? "(min-width: 1040px) 996px, calc(100vw - 44px)" : "(min-width: 841px) 320px, calc(50vw - 28px)"}
+        sizes={feature ? "(min-width: 1040px) 996px, calc(100vw - 44px)" : WIDE_COLUMNS ? "(min-width: 841px) 320px, calc(50vw - 28px)" : "(min-width: 1040px) 488px, calc(50vw - 28px)"}
         style={feature ? undefined : { aspectRatio: aspect }}
         className={cn(
           "transition-[box-shadow,transform] duration-[350ms] ease-[var(--ease-out)]",
@@ -77,12 +82,7 @@ function Tile({
           feature && "aspect-[3/2] min-[700px]:aspect-[21/9]",
         )}
       />
-      <span
-        className={cn(
-          "pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 translate-y-1 text-[9.5px] font-semibold uppercase tracking-[0.22em] opacity-0 transition-[opacity,transform] duration-300 ease-[var(--ease-out)] group-hover:translate-y-0 group-hover:opacity-80 group-focus-visible:translate-y-0 group-focus-visible:opacity-80",
-          src ? "text-ivory [text-shadow:0_1px_6px_rgba(36,24,18,0.7)]" : "text-coffee-soft",
-        )}
-      >
+      <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 translate-y-1 text-[9.5px] font-semibold uppercase tracking-[0.22em] text-ivory opacity-0 [text-shadow:0_1px_6px_rgba(36,24,18,0.7)] transition-[opacity,transform] duration-300 ease-[var(--ease-out)] group-hover:translate-y-0 group-hover:opacity-80 group-focus-visible:translate-y-0 group-focus-visible:opacity-80">
         View
       </span>
     </button>
@@ -145,30 +145,28 @@ export function Gallery() {
           <Reveal>
             <SectionHeading eyebrow={gallery.eyebrow} title={gallery.heading} lede={gallery.subline} />
           </Reveal>
-          {ALL_PHOTOS_IN ? null : (
-            <Reveal delayMs={120} className="mt-3 flex justify-center">
-              <span className="inline-flex items-center gap-2.5 font-display text-[clamp(12px,2.6vw,13px)] italic text-coral">
-                <span aria-hidden="true" className="size-1 rounded-full bg-gold" />
-                {gallery.emptyNote}
-                <span aria-hidden="true" className="size-1 rounded-full bg-gold" />
-              </span>
-            </Reveal>
-          )}
 
           <div className="mt-[clamp(38px,6vw,58px)]">
             {/* feature tile */}
-            <Reveal className="mb-[clamp(16px,2.4vw,22px)]">
-              <Tile index={0} tile={TILES[0]} onOpen={openLB} />
-            </Reveal>
+            {FEATURE ? (
+              <Reveal className="mb-[clamp(16px,2.4vw,22px)]">
+                <Tile index={0} tile={FEATURE} onOpen={openLB} />
+              </Reveal>
+            ) : null}
 
             {/* masonry */}
-            <div className="columns-2 [column-gap:clamp(14px,2vw,20px)] min-[841px]:columns-3 max-[460px]:[column-gap:12px]">
-              {TILES.slice(1).map((tile, i) => (
+            <div
+              className={cn(
+                "columns-2 [column-gap:clamp(14px,2vw,20px)] max-[460px]:[column-gap:12px]",
+                WIDE_COLUMNS && "min-[841px]:columns-3",
+              )}
+            >
+              {TILES.slice(MASONRY_START).map((tile, i) => (
                 <Reveal
                   key={tile.caption}
                   className="mb-[clamp(14px,2vw,20px)] break-inside-avoid"
                 >
-                  <Tile index={i + 1} tile={tile} onOpen={openLB} />
+                  <Tile index={i + MASONRY_START} tile={tile} onOpen={openLB} />
                 </Reveal>
               ))}
             </div>
@@ -222,24 +220,16 @@ export function Gallery() {
             <div className="relative w-fit">
               <RoseSprig variant="sprig" className="absolute -left-2.5 -top-2.5 z-[3] w-[clamp(56px,11vw,84px)]" />
               <RoseSprig variant="sprig" className="absolute -bottom-2.5 -right-2.5 z-[3] w-[clamp(56px,11vw,84px)] rotate-180" />
-              {TILES[idx].src ? (
-                // Real photo at its own aspect, as large as the stage allows.
-                <PhotoFrame
-                  src={TILES[idx].src}
-                  alt={TILES[idx].alt}
-                  sizes="(min-width: 1000px) 860px, 86vw"
-                  style={{
-                    aspectRatio: TILES[idx].aspect,
-                    height: `min(64vh, calc(min(860px, 86vw) / ${ratioOf(TILES[idx].aspect)}))`,
-                  }}
-                />
-              ) : (
-                <PhotoFrame
-                  monoSize={72}
-                  label="Photograph coming soon"
-                  className="aspect-[3/2] h-[min(60vh,calc(86vw/1.5))]"
-                />
-              )}
+              {/* the photo at its own aspect, as large as the stage allows */}
+              <PhotoFrame
+                src={TILES[idx].src}
+                alt={TILES[idx].alt}
+                sizes="(min-width: 1000px) 860px, 86vw"
+                style={{
+                  aspectRatio: TILES[idx].aspect,
+                  height: `min(64vh, calc(min(860px, 86vw) / ${ratioOf(TILES[idx].aspect)}))`,
+                }}
+              />
             </div>
             <div className="flex flex-col items-center gap-2 text-center max-[560px]:mb-14">
               <span className="font-display text-[clamp(18px,4vw,23px)] italic text-ivory">

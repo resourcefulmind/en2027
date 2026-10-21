@@ -4,9 +4,6 @@
  * Populated from context/WEDDING_SITE_CONTENT_SCRIPT.md (the approved copy).
  * Components import from here. Never inline the couple's details.
  *
- * Strings in [SQUARE BRACKETS] are genuine placeholders still owed by the couple
- * (see context/WEDDING_SITE_FACTS.md §3 / §5). Swap them in one pass; do not invent.
- *
  * Names confirmed: Ebere & Nnamdi. Monogram: E & N. Family honour confirmed:
  * Ibeh is the bride's family (named first), Obioha Ukanwa the groom's.
  */
@@ -120,9 +117,8 @@ export const content = {
     eyebrow: "THROUGH THE YEARS",
     heading: "A Few of Our Favourite Moments",
     subline: "Glimpses of the road that brought us here, and of the day itself, once it is ours to keep.",
-    emptyNote: "Photographs coming soon, gathered after our shoot.",
     // First entry is the wide feature tile; `aspect` drives the masonry layout.
-    // A tile without `src` shows the monogram placeholder. Frame plan and file
+    // A tile without `src` is left out of the gallery until it has one. Frame plan and file
     // names: context/photo-direction.md. `position` keeps the couple in frame
     // where the slot crops (the feature tile is 3:2 on phones).
     tiles: [
@@ -170,7 +166,15 @@ export const content = {
     intro:
       "Nothing means more to us than having you there. For those who would also like to bless the home we are beginning, we have gathered a few ways below.",
     naira: { label: "₦ NAIRA", accountName: "Ebere Ibeawuchi Ezinma", accountNumber: "0037205514", bank: "GTBank" },
-    registry: { line: "Prefer to gift an item? Visit our registry.", cta: "VIEW OUR REGISTRY", url: "[registry-url]" },
+    // The registry is a store-run Google Form (pick items, pay the store, send the receipt on WhatsApp).
+    // `qr` is a static code generated straight to `url`, so it never depends on a redirect service.
+    registry: {
+      line: "Prefer to gift an item? Visit our registry.",
+      cta: "VIEW OUR REGISTRY",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLScetm0GWMU3iN4mE5ysk1IRiHJgzHS2efSkh_0thUEWM6JFKA/viewform",
+      qr: "/images/registry-qr.svg",
+      qrLine: "Or scan to open it on your phone",
+    },
   },
 
   wishes: {
@@ -182,14 +186,6 @@ export const content = {
     wallHeading: "Their Well-Wishes",
     toast: "Thank you! Your wish has been shared.",
     emptyState: "Be the first to leave a wish for Ebere & Nnamdi.",
-    // Sample wishes only. NOT shown on the live wall (it reads real wishes only).
-    // The Igbo phrasing (nwa m; Chukwu gozie unu) must be confirmed by an
-    // Igbo-speaking family member before any live use.
-    seeded: [
-      { name: "Aunty Ngozi", message: "Ebere, nwa m, you have chosen well. May your home never lack laughter, your pot never lack, and your love deepen with every passing year." },
-      { name: "Chidi & Ada", message: "From one couple to another: guard your evenings, settle every quarrel before you sleep, and let no one outside your home settle what is yours. Congratulations to you both." },
-      { name: "Uncle Bayo", message: "Chukwu gozie unu. May He keep you both, crown your union with children and long life, and make your home a place of peace." },
-    ],
   },
 
   faq: {

@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { content } from "@/content";
 import { Badge } from "@/components/woven/Badge";
 import { Button } from "@/components/woven/Button";
@@ -15,10 +16,10 @@ import { useToast } from "@/lib/useToast";
 import { cn } from "@/lib/utils";
 
 /**
- * Gifting (Feature 10). Display-only, no payments. A gracious intro, two cash
- * account cards (Naira + Foreign) with copy-to-clipboard on the account number /
- * IBAN, and a registry block. The registry link is live only when a real URL is
- * set (else a disabled button); copy actions confirm via the shared Toast.
+ * Gifting (Feature 10). Display-only, no payments. A gracious intro, the Naira
+ * account card with copy-to-clipboard on the account number, and a registry
+ * block: a link out plus a QR to the same URL on wider screens (a phone can't
+ * scan itself). Copy actions confirm via the shared Toast.
  */
 
 const { gifting } = content;
@@ -27,23 +28,13 @@ const CARD_GRAIN =
   "repeating-linear-gradient(45deg, rgba(62,44,34,.012) 0 1px, transparent 1px 6px)," +
   "repeating-linear-gradient(-45deg, rgba(62,44,34,.009) 0 1px, transparent 1px 6px)";
 
-const isRealUrl = (u: string) => /^https?:\/\//.test(u);
-
-function Field({
-  label,
-  value,
-  valueClassName,
-}: {
-  label: string;
-  value: string;
-  valueClassName?: string;
-}) {
+function Field({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <div className="mb-[5px] text-[10.5px] font-semibold uppercase tracking-[0.18em] text-coffee-soft">
         {label}
       </div>
-      <div className={cn("text-[clamp(15.5px,3.6vw,18px)] font-medium text-coffee break-words", valueClassName)}>
+      <div className="text-[clamp(15.5px,3.6vw,18px)] font-medium text-coffee break-words">
         {value}
       </div>
     </div>
@@ -94,19 +85,9 @@ function CopyField({
 }
 
 // Cardstock shell with badge + bordered field stack.
-function AccountCard({
-  badge,
-  badgeVariant,
-  delayMs,
-  children,
-}: {
-  badge: string;
-  badgeVariant: "coral" | "gold-outline";
-  delayMs?: number;
-  children: ReactNode;
-}) {
+function AccountCard({ badge, children }: { badge: string; children: ReactNode }) {
   return (
-    <Reveal delayMs={delayMs} className="min-[760px]:flex-1">
+    <Reveal className="min-[760px]:flex-1">
       <div
         className="relative h-full rounded-[4px] border border-gold bg-ivory p-[clamp(24px,5vw,36px)] shadow-[0_2px_5px_rgba(62,44,34,0.05),0_22px_50px_rgba(62,44,34,0.10)]"
         style={{ backgroundImage: CARD_GRAIN }}
@@ -116,7 +97,7 @@ function AccountCard({
           className="pointer-events-none absolute inset-[5px] rounded-[3px] border border-[rgba(194,155,69,0.4)]"
         />
         <div className="relative flex h-full flex-col">
-          <Badge variant={badgeVariant} className="mb-[clamp(18px,3vw,24px)] self-start">
+          <Badge variant="coral" className="mb-[clamp(18px,3vw,24px)] self-start">
             {badge}
           </Badge>
           <div className="[&>div]:border-t [&>div]:border-[rgba(62,44,34,0.1)] [&>div]:py-[13px] [&>div:first-child]:border-t-0 [&>div:first-child]:pt-0">
@@ -133,7 +114,6 @@ const MONO_BIG = "font-display text-[clamp(20px,5.2vw,26px)] tracking-[0.03em] l
 export function Gifting() {
   const { toast, showToast } = useToast();
   const copied = () => showToast("Copied to clipboard");
-  const registryLive = isRealUrl(gifting.registry.url);
 
   return (
     <>
@@ -167,7 +147,7 @@ export function Gifting() {
           </Reveal>
 
           <div className="mx-auto w-full max-w-[440px]">
-            <AccountCard badge={gifting.naira.label} badgeVariant="coral">
+            <AccountCard badge={gifting.naira.label}>
               <Field label="Account Name" value={gifting.naira.accountName} />
               <CopyField
                 label="Account Number"
@@ -189,29 +169,29 @@ export function Gifting() {
             <p className="m-0 text-[clamp(15px,3.4vw,17px)] leading-[1.5] text-coffee">
               {gifting.registry.line}
             </p>
-            {registryLive ? (
-              <Button
-                variant="secondary"
-                href={gifting.registry.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-1.5 gap-2.5 border-coffee/70 text-coffee hover:border-coffee hover:bg-coffee hover:text-ivory [&>svg]:size-3.5"
-              >
-                {gifting.registry.cta}
-                <ExternalIcon />
-              </Button>
-            ) : (
-              <Button
-                variant="secondary"
-                disabled
-                aria-disabled="true"
-                title="Registry link coming soon"
-                className="mt-1.5 cursor-not-allowed gap-2.5 border-coffee/30 text-coffee/50 opacity-70 [&>svg]:size-3.5"
-              >
-                {gifting.registry.cta}
-                <ExternalIcon />
-              </Button>
-            )}
+            <Button
+              variant="secondary"
+              href={gifting.registry.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1.5 gap-2.5 border-coffee/70 text-coffee hover:border-coffee hover:bg-coffee hover:text-ivory [&>svg]:size-3.5"
+            >
+              {gifting.registry.cta}
+              <ExternalIcon />
+            </Button>
+            <div className="mt-[clamp(10px,2vw,16px)] hidden flex-col items-center gap-2.5 min-[760px]:flex">
+              <div className="rounded-[4px] border border-[rgba(194,155,69,0.45)] bg-ivory p-2.5 shadow-[0_2px_5px_rgba(62,44,34,0.05),0_12px_28px_rgba(62,44,34,0.08)]">
+                <Image
+                  src={gifting.registry.qr}
+                  alt="QR code that opens the gift registry"
+                  width={132}
+                  height={132}
+                  unoptimized
+                  className="block size-[132px]"
+                />
+              </div>
+              <span className="text-[12.5px] italic text-coffee-soft">{gifting.registry.qrLine}</span>
+            </div>
           </Reveal>
         </div>
       </section>

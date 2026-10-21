@@ -2,13 +2,13 @@
 
 A mobile-first wedding invitation site, built with Next.js.
 
-A single-page presentational site with two forms — RSVP and well-wishes.
+A single-page presentational site with two forms: RSVP and well-wishes.
 
 ## Stack
 
 - Next.js (App Router), React 19, TypeScript (strict)
 - Tailwind CSS v4
-- `next/font` — Fraunces (display) + Hanken Grotesk (body)
+- `next/font`: Fraunces (display) + Hanken Grotesk (body)
 
 ## Run
 
@@ -32,7 +32,7 @@ content.ts      all site copy
 
 ## Status
 
-Phase 2 — building the page UI section by section. In: foundation,
-navigation, hero, countdown. Pending: the remaining sections and the form
-endpoints (RSVP → Google Sheets, well-wishes → Supabase).
+Live at https://en2027.vercel.app with every section built, RSVP writing to a
+Google Sheet and well-wishes to Supabase. Remaining: the last gallery and story
+photographs, then a final launch check.
 ```
