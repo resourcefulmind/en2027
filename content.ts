@@ -81,7 +81,7 @@ export const content = {
         ],
       },
     },
-    pullQuote: "\"I no tell you say I go marry you.\"",
+    pullQuote: "I no tell you say I go marry you.",
   },
 
   details: {
@@ -249,6 +249,14 @@ export const content = {
     // Formal honour: groom's full title lives here, with dignity.
     formalHonour: "High Chief Nnamdi Johnson Obioha · Ikeoha 1 of Lude",
     dateLine: "5 January 2027 · Onicha Ezinihitte",
+    // Builder's credit, approved by Ebere. WhatsApp number in international
+    // digits only (no +, spaces or leading 0).
+    credit: {
+      by: "Website by Opeyemi Bangkok",
+      cta: "Want one for your celebration? Chat on WhatsApp",
+      whatsapp: "2347018112594",
+      message: "Hello Opeyemi, I saw Ebere & Nnamdi's wedding website and I'd love one for my celebration.",
+    },
   },
 
   rsvp: {
