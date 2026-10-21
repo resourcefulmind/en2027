@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { content } from "@/content";
 import { Badge } from "@/components/woven/Badge";
 import { Button } from "@/components/woven/Button";
@@ -18,7 +19,8 @@ import { cn } from "@/lib/utils";
  * Gifting (Feature 10). Display-only, no payments. A gracious intro, two cash
  * account cards (Naira + Foreign) with copy-to-clipboard on the account number /
  * IBAN, and a registry block. The registry link is live only when a real URL is
- * set (else a disabled button); copy actions confirm via the shared Toast.
+ * set (else a disabled button), with a QR to the same URL on wider screens (a
+ * phone can't scan itself); copy actions confirm via the shared Toast.
  */
 
 const { gifting } = content;
@@ -212,6 +214,21 @@ export function Gifting() {
                 <ExternalIcon />
               </Button>
             )}
+            {registryLive ? (
+              <div className="mt-[clamp(10px,2vw,16px)] hidden flex-col items-center gap-2.5 min-[760px]:flex">
+                <div className="rounded-[4px] border border-[rgba(194,155,69,0.45)] bg-ivory p-2.5 shadow-[0_2px_5px_rgba(62,44,34,0.05),0_12px_28px_rgba(62,44,34,0.08)]">
+                  <Image
+                    src={gifting.registry.qr}
+                    alt="QR code that opens the gift registry"
+                    width={132}
+                    height={132}
+                    unoptimized
+                    className="block size-[132px]"
+                  />
+                </div>
+                <span className="text-[12.5px] italic text-coffee-soft">{gifting.registry.qrLine}</span>
+              </div>
+            ) : null}
           </Reveal>
         </div>
       </section>

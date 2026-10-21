@@ -170,7 +170,15 @@ export const content = {
     intro:
       "Nothing means more to us than having you there. For those who would also like to bless the home we are beginning, we have gathered a few ways below.",
     naira: { label: "₦ NAIRA", accountName: "Ebere Ibeawuchi Ezinma", accountNumber: "0037205514", bank: "GTBank" },
-    registry: { line: "Prefer to gift an item? Visit our registry.", cta: "VIEW OUR REGISTRY", url: "[registry-url]" },
+    // The registry is a store-run Google Form (pick items, pay the store, send the receipt on WhatsApp).
+    // `qr` is a static code generated straight to `url`, so it never depends on a redirect service.
+    registry: {
+      line: "Prefer to gift an item? Visit our registry.",
+      cta: "VIEW OUR REGISTRY",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLScetm0GWMU3iN4mE5ysk1IRiHJgzHS2efSkh_0thUEWM6JFKA/viewform",
+      qr: "/images/registry-qr.svg",
+      qrLine: "Or scan to open it on your phone",
+    },
   },
 
   wishes: {
