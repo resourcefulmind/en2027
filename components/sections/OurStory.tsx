@@ -10,8 +10,8 @@ import { ThreadIn } from "@/components/woven/ThreadIn";
 import { cn } from "@/lib/utils";
 
 /**
- * Our Story (Feature 06). Two alternating beats (text + framed photo
- * placeholder) around a pull-quote interlude, opened by the continuing coral
+ * Our Story (Feature 06). Two alternating beats (text + framed photo,
+ * or its placeholder until one is set) around a pull-quote interlude, opened by the continuing coral
  * thread. Paper grain, a layered golden-hour wash, and slow-drifting petals set
  * the mood. Text fades in on scroll (Reveal); the rose line-art draws itself in
  * (RoseSprig); everything is reduced-motion safe.
@@ -39,7 +39,7 @@ const PETAL_BG =
   "radial-gradient(circle at 35% 30%, rgba(242,192,172,.5), rgba(224,120,86,.16))";
 
 // The Beat's framed photo: shared PhotoFrame + two rose-sprig corners.
-function BeatPhoto({ className }: { className?: string }) {
+function BeatPhoto({ photo, className }: { photo?: Photo; className?: string }) {
   return (
     <div className={cn("relative", className)}>
       <RoseSprig
@@ -53,13 +53,17 @@ function BeatPhoto({ className }: { className?: string }) {
       <PhotoFrame
         monoSize={58}
         label="Couple's Photograph"
+        src={photo?.src}
+        alt={photo?.alt}
+        sizes="(min-width: 760px) 460px, calc(100vw - 48px)"
         className="aspect-[4/5] gap-3.5 shadow-[0_2px_5px_rgba(62,44,34,0.05),0_26px_56px_rgba(62,44,34,0.12)]"
       />
     </div>
   );
 }
 
-type BeatData = { label: string; heading: string; body: readonly string[] };
+type Photo = { src: string; alt: string };
+type BeatData = { label: string; heading: string; body: readonly string[]; photo?: Photo };
 
 function Beat({ beat, flip }: { beat: BeatData; flip?: boolean }) {
   return (
@@ -84,7 +88,7 @@ function Beat({ beat, flip }: { beat: BeatData; flip?: boolean }) {
           </p>
         ))}
       </div>
-      <BeatPhoto className={cn(flip && "min-[760px]:order-1")} />
+      <BeatPhoto photo={beat.photo} className={cn(flip && "min-[760px]:order-1")} />
     </Reveal>
   );
 }

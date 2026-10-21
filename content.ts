@@ -74,6 +74,10 @@ export const content = {
       proposal: {
         label: "The Proposal",
         heading: "The question",
+        photo: {
+          src: "/images/story-2.jpg",
+          alt: "Ebere on the phone late at night by lamplight, eyes closed and smiling, her engagement ring on the hand resting on her knee.",
+        },
         body: [
           "The distance between them meant the question came the way so many of their evenings did: over the phone, late into the night, just the two of them. Mid-conversation, Nnamdi asked. A ring followed soon after, sent ahead of him until he could place it on her hand himself.",
           "She said yes, a big one. His sisters, who had loved her from the start, were hardly surprised; they had been calling her \"Mrs\" long before the question was ever asked. By the next morning her phone had not stopped ringing, full of everyone who had been waiting for this. He calls her Oguguom, his gift from God, and now the whole family agrees.",
@@ -117,18 +121,46 @@ export const content = {
     heading: "A Few of Our Favourite Moments",
     subline: "Glimpses of the road that brought us here, and of the day itself, once it is ours to keep.",
     emptyNote: "Photographs coming soon, gathered after our shoot.",
-    // PLACEHOLDER tiles: captions + aspect ratios are scaffolding; the photo shoot
-    // (feature 17) adds `src`/`alt` per tile. First entry is the wide feature tile;
-    // `aspect` drives the masonry layout. See FACTS §9.
+    // First entry is the wide feature tile; `aspect` drives the masonry layout.
+    // A tile without `src` shows the monogram placeholder. Frame plan and file
+    // names: context/photo-direction.md. `position` keeps the couple in frame
+    // where the slot crops (the feature tile is 3:2 on phones).
     tiles: [
-      { caption: "A wide, unhurried moment", aspect: "21 / 9", feature: true },
+      {
+        caption: "A wide, unhurried moment",
+        aspect: "21 / 9",
+        feature: true,
+        src: "/images/gallery-01.jpg",
+        alt: "Ebere and Nnamdi walking barefoot along the shore at sunset, his arm around her shoulders, laughing as they look at each other.",
+        position: "85% 50%",
+      },
       { caption: "Golden hour", aspect: "4 / 5" },
-      { caption: "A quiet portrait", aspect: "1 / 1" },
-      { caption: "Hand in hand", aspect: "3 / 4" },
-      { caption: "Among family", aspect: "5 / 4" },
-      { caption: "The first look", aspect: "3 / 4" },
+      {
+        caption: "A quiet portrait",
+        aspect: "1 / 1",
+        src: "/images/gallery-03.jpg",
+        alt: "Ebere smiling in a coral off-the-shoulder dress and a gold butterfly pendant, against an ivory backdrop.",
+      },
+      {
+        caption: "Hand in hand",
+        aspect: "3 / 4",
+        src: "/images/gallery-04.jpg",
+        alt: "Ebere's hand, wearing her engagement ring, resting on Nnamdi's against coral and coffee-brown sleeves.",
+      },
+      { caption: "In our colours", aspect: "5 / 4" },
+      {
+        caption: "The groom",
+        aspect: "3 / 4",
+        src: "/images/gallery-06.jpg",
+        alt: "Nnamdi in a coffee-brown kaftan with gold embroidery, standing in soft window light.",
+      },
       { caption: "Laughter", aspect: "4 / 5" },
-      { caption: "A stolen glance", aspect: "1 / 1" },
+      {
+        caption: "A stolen glance",
+        aspect: "1 / 1",
+        src: "/images/gallery-08.jpg",
+        alt: "Ebere and Nnamdi relaxing on a beach lounger at sunset, Nnamdi looking up at Ebere as she smiles.",
+      },
     ],
   },
 
