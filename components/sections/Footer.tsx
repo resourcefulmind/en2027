@@ -12,11 +12,12 @@ import { cn } from "@/lib/utils";
  * Footer (Feature 12): the closing movement. The coral thread arrives from the
  * section above and resolves into a gold knot (drawn via useReveal), then the EN
  * crest, names, date, the groom's formal honour, a rose flourish, the closing
- * line, and the hashtag, over a dusk wash deepening at the very bottom. Content
- * reveals via Reveal; reduced-motion shows everything.
+ * line, the hashtag and the builder's credit, over a dusk wash deepening at the
+ * very bottom. Content reveals via Reveal; reduced-motion shows everything.
  */
 
 const { footer, couple } = content;
+const WHATSAPP_URL = `https://wa.me/${footer.credit.whatsapp}?text=${encodeURIComponent(footer.credit.message)}`;
 
 export function Footer() {
   const { ref, revealed } = useReveal<HTMLDivElement>();
@@ -113,6 +114,19 @@ export function Footer() {
             <span aria-hidden="true" className="size-1 rotate-45 border border-gold" />
           </p>
         </Reveal>
+
+        {/* builder's credit: kept small and last, under a hairline */}
+        <div className="mt-[clamp(48px,9vw,80px)] flex w-full flex-col items-center gap-1.5 border-t border-[rgba(194,155,69,0.3)] pt-[clamp(18px,3.5vw,24px)] text-[11.5px] leading-[1.6] text-coffee-soft">
+          <span className="font-semibold uppercase tracking-[0.18em]">{footer.credit.by}</span>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="italic underline decoration-[rgba(194,155,69,0.6)] underline-offset-[3px] transition-colors hover:text-coral focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus-ring)]"
+          >
+            {footer.credit.cta}
+          </a>
+        </div>
       </div>
     </footer>
   );
