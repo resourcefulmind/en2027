@@ -14,8 +14,7 @@ import { cn } from "@/lib/utils";
  * Gallery (Feature 09). An editorial layout of framed photos: one wide
  * feature tile + a CSS-columns masonry, each a button opening a lightbox
  * (prev/next/close, keyboard, scrim, focus handling, scroll lock). Tiles come
- * from content.gallery.tiles; a tile without `src` is left out until its
- * photo arrives, so the gallery only ever shows real photographs.
+ * from content.gallery.tiles.
  */
 
 const { gallery } = content;
@@ -23,15 +22,12 @@ type GalleryTile = {
   caption: string;
   aspect: string;
   feature?: boolean;
-  src?: string;
-  alt?: string;
+  src: string;
+  alt: string;
   position?: string;
 };
-type PhotoTile = GalleryTile & { src: string; alt: string };
-const TILES = (gallery.tiles as readonly GalleryTile[]).filter(
-  (t): t is PhotoTile => Boolean(t.src && t.alt),
-);
-// The wide feature tile leads only while its photo is in.
+const TILES = gallery.tiles as readonly GalleryTile[];
+// The first tile leads as the wide feature when flagged.
 const FEATURE = TILES[0]?.feature ? TILES[0] : null;
 const MASONRY_START = FEATURE ? 1 : 0;
 // Three columns only once there are enough tiles to fill them; CSS columns
@@ -50,7 +46,7 @@ function Tile({
   onOpen,
 }: {
   index: number;
-  tile: PhotoTile;
+  tile: GalleryTile;
   onOpen: (i: number) => void;
 }) {
   const { aspect, feature, src, alt, position } = tile;

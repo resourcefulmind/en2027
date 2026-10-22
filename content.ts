@@ -122,9 +122,8 @@ export const content = {
     heading: "A Few of Our Favourite Moments",
     subline: "Glimpses of the road that brought us here, and of the day itself, once it is ours to keep.",
     // First entry is the wide feature tile; `aspect` drives the masonry layout.
-    // A tile without `src` is left out of the gallery until it has one. Frame plan and file
-    // names: context/photo-direction.md. `position` keeps the couple in frame
-    // where the slot crops (the feature tile is 3:2 on phones).
+    // `position` keeps the couple in frame where the slot crops (the feature
+    // tile is 3:2 on phones).
     tiles: [
       {
         caption: "A wide, unhurried moment",
@@ -134,7 +133,6 @@ export const content = {
         alt: "Ebere and Nnamdi walking barefoot along the shore at sunset, his arm around her shoulders, laughing as they look at each other.",
         position: "85% 50%",
       },
-      { caption: "Golden hour", aspect: "4 / 5" },
       {
         caption: "A quiet portrait",
         aspect: "1 / 1",
@@ -147,14 +145,12 @@ export const content = {
         src: "/images/gallery-04.jpg",
         alt: "Ebere's hand, wearing her engagement ring, resting on Nnamdi's against coral and coffee-brown sleeves.",
       },
-      { caption: "In our colours", aspect: "5 / 4" },
       {
         caption: "The groom",
         aspect: "3 / 4",
         src: "/images/gallery-06.jpg",
         alt: "Nnamdi in a coffee-brown kaftan with gold embroidery, standing in soft window light.",
       },
-      { caption: "Laughter", aspect: "4 / 5" },
       {
         caption: "A stolen glance",
         aspect: "1 / 1",
