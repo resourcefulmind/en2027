@@ -63,6 +63,10 @@ export const content = {
       howWeMet: {
         label: "How We Met",
         heading: "Where we began",
+        photo: {
+          src: "/images/story-1.jpg",
+          alt: "Nnamdi holding Ebere from behind on the beach at sunset, his cheek against hers, both smiling with eyes closed.",
+        },
         body: [
           "It began in January 2026, at the opening of Nnamdi's sister Jennifer's shop. Ebere was there among family, moving through the room, helping wherever she was needed. Nnamdi noticed her before she ever noticed him, and quietly decided, right there, that he had found her.",
           "He wasted no time telling her so. \"Ebere, I'll marry you,\" he would say, again and again, until the teasing became a promise. She thought it was all too fast, too good to be quite true. Then came an afternoon by the beach, and whatever small doubt remained was gone: this was the woman he would build a life with.",
