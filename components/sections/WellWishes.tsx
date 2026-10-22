@@ -150,7 +150,7 @@ export function WellWishes({ initialWishes }: { initialWishes: WishCard[] }) {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-flex cursor-pointer items-center gap-2.5 self-start rounded-pill bg-coral px-[30px] py-3.5 font-body text-[12.5px] font-bold uppercase tracking-[0.12em] text-white shadow-[0_1px_2px_rgba(199,95,63,0.25),0_12px_26px_rgba(199,95,63,0.22)] transition-[background-color,transform] duration-200 hover:bg-coral-deep active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+                  className="inline-flex cursor-pointer items-center gap-2.5 self-start rounded-pill bg-coral-fill px-[30px] py-3.5 font-body text-[12.5px] font-bold uppercase tracking-[0.12em] text-white shadow-[0_1px_2px_rgba(199,95,63,0.25),0_12px_26px_rgba(199,95,63,0.22)] transition-[background-color,transform] duration-200 hover:bg-coral-fill-deep active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   <HeartIcon />
                   {submitting ? "Sharing…" : copy.submitCta}

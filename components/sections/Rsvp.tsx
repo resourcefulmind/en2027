@@ -221,7 +221,7 @@ export function Rsvp() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-pill bg-coral px-[30px] py-[17px] font-body text-[13px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_1px_2px_rgba(199,95,63,0.25),0_14px_30px_rgba(199,95,63,0.24)] transition-[background-color,transform] duration-200 hover:bg-coral-deep active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
+                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-pill bg-coral-fill px-[30px] py-[17px] font-body text-[13px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_1px_2px_rgba(199,95,63,0.25),0_14px_30px_rgba(199,95,63,0.24)] transition-[background-color,transform] duration-200 hover:bg-coral-fill-deep active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {!submitting ? (
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="size-4">

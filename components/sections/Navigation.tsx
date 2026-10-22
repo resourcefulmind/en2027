@@ -158,11 +158,11 @@ export function Navigation() {
             type="button"
             onClick={go(RSVP_ID)}
             className={cn(
-              "cursor-pointer rounded-pill bg-coral font-body text-[11.5px] font-bold uppercase tracking-[0.16em] text-white",
+              "cursor-pointer rounded-pill bg-coral-fill font-body text-[11.5px] font-bold uppercase tracking-[0.16em] text-white",
               "px-6 py-[11px] max-[720px]:px-[18px] max-[720px]:py-[10px]",
               "shadow-[0_1px_2px_rgba(199,95,63,0.25),0_10px_22px_rgba(199,95,63,0.2)]",
               "transition-[background-color,transform] duration-150 ease-[var(--ease-soft)]",
-              "hover:bg-coral-deep active:scale-[0.97] focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[color:var(--color-focus-ring)]",
+              "hover:bg-coral-fill-deep active:scale-[0.97] focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[color:var(--color-focus-ring)]",
             )}
           >
             {content.nav.cta}
@@ -276,7 +276,7 @@ export function Navigation() {
         <button
           type="button"
           onClick={go(RSVP_ID)}
-          className="mt-[26px] cursor-pointer rounded-pill bg-coral p-4 text-center font-body text-[12.5px] font-bold uppercase tracking-[0.16em] text-white shadow-[0_10px_22px_rgba(199,95,63,0.22)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[color:var(--color-focus-ring)]"
+          className="mt-[26px] cursor-pointer rounded-pill bg-coral-fill p-4 text-center font-body text-[12.5px] font-bold uppercase tracking-[0.16em] text-white shadow-[0_10px_22px_rgba(199,95,63,0.22)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[color:var(--color-focus-ring)]"
         >
           {content.nav.cta}
         </button>

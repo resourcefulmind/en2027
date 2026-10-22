@@ -10,7 +10,7 @@ type Props = {
 
 const VARIANTS: Record<BadgeVariant, string> = {
   peach: "bg-peach-soft text-coffee",
-  coral: "bg-coral text-white",
+  coral: "bg-coral-fill text-white",
   "gold-outline": "border border-gold/60 text-coffee",
 };
 
