@@ -159,7 +159,8 @@ export function OurStory() {
             <p className="mt-[clamp(20px,3.5vw,32px)] font-display text-[clamp(1.5rem,5.2vw,2.4rem)] font-medium italic leading-[1.28] tracking-[-0.01em] text-balance text-coffee">
               <span className="not-italic text-coral">&ldquo;</span>
               {content.ourStory.pullQuote}
-              <span className="not-italic text-coral">&rdquo;</span>
+              {/* clear the italic overhang of the last glyph (the "?" leans into it) */}
+              <span className="ml-[0.12em] not-italic text-coral">&rdquo;</span>
             </p>
           </Reveal>
         </div>
