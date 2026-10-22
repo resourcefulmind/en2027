@@ -23,9 +23,16 @@ const hanken = Hanken_Grotesk({
   display: "swap",
 });
 
+const title = `${content.couple.namesDisplay} · The Invitation`;
+const description = `${content.event.framing} of ${content.couple.namesDisplay}, ${content.event.dateLine}, ${content.event.venueArea}.`;
+
+// The link preview (WhatsApp, iMessage, socials) uses app/opengraph-image.jpg.
 export const metadata: Metadata = {
-  title: `${content.couple.namesDisplay} · The Invitation`,
-  description: `${content.event.framing} of ${content.couple.namesDisplay}, ${content.event.dateLine}, ${content.event.venueArea}.`,
+  metadataBase: new URL("https://en2027.vercel.app"),
+  title,
+  description,
+  openGraph: { title, description, type: "website", siteName: content.couple.namesDisplay },
+  twitter: { card: "summary_large_image", title, description },
 };
 
 export default function RootLayout({

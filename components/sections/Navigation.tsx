@@ -202,7 +202,7 @@ export function Navigation() {
       />
 
       {/* Mobile sheet */}
-      <aside
+      <div
         id="nav-sheet"
         role="dialog"
         aria-modal="true"
@@ -284,7 +284,7 @@ export function Navigation() {
         <div className="mt-auto pt-6 text-center font-body text-[10.5px] uppercase tracking-[0.22em] text-coffee-soft opacity-70">
           {content.footer.dateLine}
         </div>
-      </aside>
+      </div>
     </>
   );
 }
