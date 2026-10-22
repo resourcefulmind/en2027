@@ -6,7 +6,9 @@ import { insertWish, getApprovedWishes } from "@/lib/db";
  * Well-Wishes endpoint (feature 15).
  * POST: re-validate (no-links + length) → insert (status 'approved') → return the
  * new wish so the client can finalise its optimistic card.
- * GET: the approved wall (approved-only, capped, newest-first).
+ * GET: the approved wall (approved-only, capped, newest-first). Also hit daily
+ * by the Vercel cron in vercel.json so the free Supabase project never idles
+ * into a pause.
  * Flat { success, data?, error? }; internals logged, never leaked.
  */
 export async function POST(request: Request) {
