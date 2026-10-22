@@ -20,6 +20,8 @@
   --color-coffee-soft: #6b5547; /* secondary / muted text */
   --color-coral: #e07856; /* primary accent + CTAs */
   --color-coral-deep: #c75f3f; /* coral hover / pressed */
+  --color-coral-fill: #b8553a; /* solid fills under white text (4.8:1) */
+  --color-coral-fill-deep: #9c452f; /* fill hover / pressed */
   --color-peach: #f2c0ac; /* soft accent */
   --color-peach-soft: #f8decf; /* lightest wash / selected fill */
   --color-gold: #c29b45; /* hairlines, monogram, flourishes: NEVER a fill behind text */

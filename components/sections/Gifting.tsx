@@ -73,7 +73,7 @@ function CopyField({
             "flex-none inline-flex cursor-pointer items-center gap-1.5 rounded-pill px-4 py-2.5 font-body text-[11px] font-bold uppercase tracking-[0.12em] text-white transition-[background-color,transform] duration-150 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus-ring)] [&>svg]:size-3.5",
             copied
               ? "bg-[#1F8A5B] shadow-[0_1px_2px_rgba(31,138,91,0.22),0_7px_16px_rgba(31,138,91,0.16)]"
-              : "bg-coral shadow-[0_1px_2px_rgba(199,95,63,0.22),0_7px_16px_rgba(199,95,63,0.18)] hover:bg-coral-deep",
+              : "bg-coral-fill shadow-[0_1px_2px_rgba(199,95,63,0.22),0_7px_16px_rgba(199,95,63,0.18)] hover:bg-coral-fill-deep",
           )}
         >
           {copied ? <CheckIcon /> : <CopyIcon />}

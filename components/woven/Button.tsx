@@ -29,8 +29,8 @@ const BASE =
 
 const VARIANTS: Record<ButtonVariant, string> = {
   primary:
-    "rounded-pill bg-coral text-white font-bold text-[13px] tracking-[0.13em] px-7 py-3.5 " +
-    "shadow-[0_1px_2px_rgba(199,95,63,0.25),0_12px_26px_rgba(199,95,63,0.22)] hover:bg-coral-deep",
+    "rounded-pill bg-coral-fill text-white font-bold text-[13px] tracking-[0.13em] px-7 py-3.5 " +
+    "shadow-[0_1px_2px_rgba(199,95,63,0.25),0_12px_26px_rgba(199,95,63,0.22)] hover:bg-coral-fill-deep",
   secondary:
     "rounded-pill bg-transparent text-coffee font-bold text-[13px] tracking-[0.13em] px-7 py-3.5 " +
     "border border-gold/60 hover:border-gold",
