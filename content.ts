@@ -85,7 +85,7 @@ export const content = {
         ],
       },
     },
-    pullQuote: "I no tell you say I go marry you.",
+    pullQuote: "I no tell you say I go marry you?",
   },
 
   details: {
